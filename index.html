@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meiling Engine by Team StarGarden</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700&amp;subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+  <style>
+    :root {
+      --color-star-yellow: #ffde2f;
+      --color-garden-green: #39bb9d;
+
+      --color-progress-bar: var(--color-star-yellow);
+      --color-progress-bar-background: rgb(234,234,239);
+
+      --color-background: rgb(245, 245, 247);
+
+      --color-link: var(--color-garden-green);
+      --color-shadow: rgba(0, 0, 0, .08);
+
+      --space-navbar: 120px;
+      --space-navbar-invert: -120px;
+
+      --space-xxl: 6rem;
+      --space-xl : 3rem;
+      --space-l  : 2.25rem;
+      --space-s  : 1.5rem;
+      --space-xs : 1rem;
+      --space-xxs: .75rem;
+
+      --time-long: .2s;
+      --time-short: .1s;
+   }
+   * {
+     box-sizing: border-box;
+   }
+   html {
+     font-size: 16px;
+   }
+   html, body {
+     font-family: 'Noto Sans KR', sans-serif;
+   }
+   input, button, textarea {
+     font-family: inherit;
+   }
+   body {
+     background: var(--color-background);
+     margin: 0 auto;
+   }
+   .contents {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+   }
+
+   .contents progress {
+     padding: 0;
+     margin: 0;
+
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+
+     display: block;
+     border: none;
+
+     height: 8px;
+     width: 100%;
+
+     /* problem: IE doesn't know shit about css variables */
+     color: var(--color-progress-bar);
+   }
+
+   .contents progress::-webkit-progress-bar {
+     background-color: var(--color-progress-bar-background);
+     margin: 0; padding: 0;
+     border: none;
+     vertical-align: -0.2em;
+   }
+
+   .contents progress::-webkit-progress-value {
+     background-color: var(--color-progress-bar);
+     margin: 0; padding: 0;
+     border: none;
+     vertical-align: -0.2em;
+   }
+
+   .contents progress::-moz-progress-bar {
+     background-color: var(--color-progress-bar);
+   }
+
+   .contents progress::-webkit-progress-inner-element {
+     margin: 0; padding: 0;
+     border: none;
+   }
+
+   header {
+     margin-bottom: 32px;
+   }
+
+   main {
+     background: #FFF;
+     padding: var(--space-xs) var(--space-l) var(--space-s);
+     width: calc(100vw - calc(2 * 36px));
+     max-width: 480px;
+     margin: 0;
+
+     margin-bottom: var(--space-s);
+   }
+   main > *:last-of-type {
+     margin-bottom: 0;
+   }
+
+   footer {
+     position: absolute;
+     bottom: 0em;
+     padding: .5em;
+     width: calc(100vw - 1em);
+   }
+
+   .align-center {
+     text-align: center;
+   }
+
+   a {
+     text-decoration: none;
+     color: var(--color-star-yellow);
+   }
+
+   input.full {
+     display: block;
+     border: none;
+     border-bottom: rgb(205,205,220) solid 2px;
+     padding: 0 var(--space-xs);
+     height: var(--space-xl);
+     line-height: calc(var(--space-xl) - 2px);
+   }
+
+   .margin-top-24 {
+     margin-top: 24px;
+   }
+
+   button {
+     background: none;
+     border: none;
+   }
+
+   button.primary {
+     
+   }
+
+   button.secondary {
+
+   }
+  </style>
+</head>
+<body>
+  <div class="contents">
+    <header class="align-center">
+      <img height="48px" src="https://cdn.star.garden/common/images/top_logo-ko.svg" alt="">
+    </header>
+    <progress max="100" value="20"></progress>
+    <main>
+      <input class="full" type="email" placeholder="아이디 또는 이메일을 입력하세요.">
+      <p class="margin-top-24"><a href="#">계정이 없으신가요?</a></p>
+    </main>
+    <section>
+      <button>버튼1</button>
+      <button>뭔가 더 이쁜 버튼2</button>
+    </section>
+  </div>
+</body>
+</html>
