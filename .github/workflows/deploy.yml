@@ -1,0 +1,30 @@
+name: GitHub Pages CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Publish into GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2.2.0
+        with:
+          # Git branch where assets will be deployed
+          target_branch: "gh-pages"
+          # Create incremental commit instead of doing push force
+          keep_history: true
+          # Build directory to deploy
+          build_dir: "./dist/"
+          # The committer name and email address
+          committer: "Stella IT <contact@stella-it.com>"
+          # The author name and email address
+          author: "Stella IT <contact@stella-it.com>"
+          # Commit message
+          commit_message: "chore: update github pages"
+          # Write the given domain name to the CNAME file
+          fqdn: "meiling-dev.stella-it.com"
+          # Allow Jekyll to build your site
+          jekyll: false
