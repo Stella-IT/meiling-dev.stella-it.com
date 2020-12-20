@@ -1,0 +1,86 @@
+:root {
+  // Edit here to modify styles.
+
+  // The theme color of the application.
+  --color-theme: rgb(250, 175, 15);
+  --color-text-on-theme: rgb(0, 0, 0);
+
+  // Color swatches for grayscale:
+  --color-bright-3: white;
+  --color-bright-2: rgb(245, 245, 247);
+  --color-bright-1: rgb(234, 234, 239);
+  --color-gray    : rgb(120, 120, 150);
+  --color-dark-1  : rgb(30, 30, 45);
+  --color-dark-2  : rgb(15, 15, 30);
+  --color-dark-3  : black;
+  
+  // Color swatches for links:
+  --color-link-bright: var(--color-theme);
+  --color-link-dark  : var(--color-theme);
+
+  // Color swatches for progress:
+  --color-progress-bright: var(--color-theme);
+  --color-progress-dark  : var(--color-theme);
+
+  // color swatches for shadow:
+  --color-shadow-bright: rgba(0, 0, 0, .08);
+  --color-shadow-dark  : rgba(0, 0, 0, .08);
+  
+  // Image URL for company logo:
+  --image-company-bright: url('https://accounts.stella-it.com/_common/img/logo_black.svg');
+  --image-company-dark  : url('https://accounts.stella-it.com/_common/img/logo_white.svg');
+  
+  // Spacing customization:
+  --space-xl: 3rem;
+  --space-l : 2rem;
+  --space-r : 1.5rem;
+  --space-s : 1rem;
+  --space-xs: .75rem;
+
+  // Border radius customization
+  --border-radius: 0;
+
+  // Transition customization:
+  --time-long : .2s;
+  --time-short: .1s;
+}
+
+// The following styles are designed for managing 
+// behavior of the internal scss styling. 
+//
+// Please use :root for style edits instead.
+
+@mixin theme-light {
+  --image-company            : var(--image-company-bright);
+  
+  --color-text               : var(--color-dark-3);
+  --color-link               : var(--color-link-bright);
+  --color-disabled-text      : var(--color-gray);
+  --color-disabled-background: var(--color-bright-1);
+  --color-background-body    : var(--color-bright-2);
+  --color-background-contents: var(--color-bright-3);
+  --color-background-progress: var(--color-bright-1);
+  --shadow                   : 0 4px 16px var(--color-shadow-bright);
+}
+
+@mixin theme-dark {
+  --image-company            : var(--image-company-dark);
+  
+  --color-text               : var(--color-bright-3);
+  --color-link               : var(--color-link-dark);
+  --color-disabled-text      : var(--color-gray);
+  --color-disabled-background: var(--color-dark-1);
+  --color-background-body    : var(--color-dark-2);
+  --color-background-contents: var(--color-dark-3);
+  --color-background-progress: var(--color-dark-1);
+  --shadow                   : 0 4px 16px var(--color-shadow-dark);
+}
+
+body {
+  &.theme-light {
+    @include theme-light;
+  }
+  &.theme-dark {
+    @include theme-dark;
+  }
+}
