@@ -1,14 +1,30 @@
-name: GitHub Pages CI
+name: GitHub Pages Deploy
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Installing Yarn
+        run: npm install -g yarn
+
+      - name: Installing dependencies
+        run: yarn
+      
+      - name: Building Pages
+        run: yarn build
+
       - name: Publish into GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
         with:
@@ -17,7 +33,7 @@ jobs:
           # Create incremental commit instead of doing push force
           keep_history: true
           # Build directory to deploy
-          build_dir: "./dist/"
+          build_dir: "./build"
           # The committer name and email address
           committer: "Stella IT <contact@stella-it.com>"
           # The author name and email address

@@ -1,0 +1,26 @@
+name: Linting Sources
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Installing Yarn
+        run: npm install -g yarn
+
+      - name: Installing dependencies
+        run: yarn
+      
+      - name: Linting Scripts
+        run: yarn eslint ./src/ --ext .js,.jsx,.ts,.tsx
