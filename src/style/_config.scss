@@ -60,6 +60,7 @@
   --color-background-body    : var(--color-bright-2);
   --color-background-contents: var(--color-bright-3);
   --color-background-progress: var(--color-bright-1);
+  --color-progress           : var(--color-progress-bright);
   --shadow                   : 0 4px 16px var(--color-shadow-bright);
 }
 
@@ -73,6 +74,7 @@
   --color-background-body    : var(--color-dark-2);
   --color-background-contents: var(--color-dark-3);
   --color-background-progress: var(--color-dark-1);
+  --color-progress           : var(--color-progress-dark);
   --shadow                   : 0 4px 16px var(--color-shadow-dark);
 }
 

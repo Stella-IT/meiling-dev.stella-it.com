@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Btn.scss';
 
 interface Props {
-  children?: React.ReactNode | string;
+  children?: React.ReactNode
   styleType?: "primary" | "secondary" | "tertiary";
 
   to?: string;
