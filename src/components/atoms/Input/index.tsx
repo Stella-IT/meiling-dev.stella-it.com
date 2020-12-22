@@ -4,7 +4,8 @@ import './Input.scss';
 interface Props {
   children?: React.ReactNode;
 
-  type: "number" | "email";
+  type: "number" | "email" | "password";
+  placeholder?: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
 
   grow?: boolean;
@@ -15,6 +16,7 @@ const Input: React.FC<Props> = ({
   children,
 
   type,
+  placeholder = "",
   onChange,
 
   grow = false,
@@ -26,7 +28,7 @@ const Input: React.FC<Props> = ({
   if (disabled) classes.push("disabled");
 
   return (
-    <input className={classes.join(" ")} type={type} onChange={onChange}  />
+    <input className={classes.join(" ")} type={type} onChange={onChange} placeholder={placeholder} {...props} />
   )
 }
 

@@ -46,11 +46,11 @@ progress {
     }
 
     &::-webkit-progress-value {
-      background-color: var(--color-disabled-text);
+      background-color: var(--color-background-progress-disabled);
     }
 
     &::-moz-progress-bar {
-      background-color: var(--color-disabled-text);
+      background-color: var(--color-background-progress-disabled);
     }
   }
 }

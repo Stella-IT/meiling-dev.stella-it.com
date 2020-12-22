@@ -1,6 +1,45 @@
 input {
-  &.grow {
-    width: 100%;
+  &[type=text],
+  &[type=email],
+  &[type=number],
+  &[type=password],
+  &[type=range],
+  &[type=month],
+  &[type=week],
+  &[type=time],
+  &[type=datetime],
+  &[type=datetime-local],
+  &[type=email],
+  &[type=search],
+  &[type=tel],
+  &[type=url] {
+    display: block;
+    padding: 0 var(--space-xs);
+    height: var(--space-xl);
+
+    color: var(--color-text);
+    line-height: calc(var(--space-xl) - 2px);
+    border: none;
+    border-bottom: var(--color-border-textfield) solid 2px;
+    background: transparent;
+
+    transition-duration: var(--time-short);
+
+    &:not(:disabled) {
+      &:hover, &:focus {
+        color: var(--color-theme);
+        border-color: var(--color-theme);
+      }
+    }
+
+    &:disabled {
+      line-height: var(--space-xl);
+      border-bottom: 0;
+      background: var(--color-background-textfield-disabled);
+    }
+
+    &.grow {
+      width: 100%;
+    }
   }
 }
-
