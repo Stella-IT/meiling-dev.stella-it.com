@@ -1,5 +1,5 @@
 import React from 'react';
-import './Input.scss';
+import './TextField.scss';
 
 interface Props {
   children?: React.ReactNode;
