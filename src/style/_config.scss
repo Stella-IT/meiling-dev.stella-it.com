@@ -25,6 +25,10 @@
   --color-dark-3  : rgb(22, 22, 34);
   --color-dark-4  : black;
   
+  // Color swatches for captions:
+  --color-caption-bright: var(--color-gray);
+  --color-caption-dark  : var(--color-gray);
+
   // Color swatches for links:
   --color-link-bright: var(--color-theme);
   --color-link-dark  : var(--color-theme);
@@ -68,6 +72,7 @@
   
   --color-text                         : var(--color-dark-4);
   --color-link                         : var(--color-link-bright);
+  --color-caption                      : var(--color-caption-bright);
   --color-positive                     : var(--color-positive-bright);
   --color-warning                      : var(--color-warning-bright);
   --color-negative                     : var(--color-negative-bright);
@@ -88,6 +93,7 @@
   
   --color-text                         : var(--color-bright-4);
   --color-link                         : var(--color-link-dark);
+  --color-caption                      : var(--color-caption-dark);
   --color-positive                     : var(--color-positive-dark);
   --color-warning                      : var(--color-warning-dark);
   --color-negative                     : var(--color-negative-dark);
