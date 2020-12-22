@@ -1,21 +1,21 @@
 import React from 'react';
-import './Progress.scss';
+import './Input.scss';
 
 interface Props {
   children?: React.ReactNode;
 
-  value?: number;
-  max?: number;
+  type: "number" | "email";
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
 
   grow?: boolean;
   disabled?: boolean;
 };
 
-const Progress: React.FC<Props> = ({
+const Input: React.FC<Props> = ({
   children,
 
-  value,
-  max,
+  type,
+  onChange,
 
   grow = false,
   disabled = false,
@@ -26,8 +26,8 @@ const Progress: React.FC<Props> = ({
   if (disabled) classes.push("disabled");
 
   return (
-    <progress className={classes.join(" ")} value={value} max={max}>{children}</progress>
+    <input className={classes.join(" ")} type={type} onChange={onChange}  />
   )
 }
 
-export default Progress;
+export default Input;

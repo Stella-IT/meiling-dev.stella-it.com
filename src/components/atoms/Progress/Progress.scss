@@ -19,28 +19,39 @@ progress {
     display: block;
     width: 100%;
   }
+
+  &::-webkit-progress-bar {
+    background-color: var(--color-background-progress);
+    margin: 0; padding: 0;
+    border: none;
+    vertical-align: -0.2em;
+  }
+
+  &::-webkit-progress-value {
+    background-color: var(--color-progress);
+    margin: 0; padding: 0;
+    border: none;
+    vertical-align: -0.2em;
+    transition: width .2s;
+  }
+
+  &::-moz-progress-bar {
+    background-color: var(--color-progress);
+    transition: width .2s;
+  }
+
+  &.disabled {
+    &::-webkit-progress-bar {
+      background-color: var(--color-disabled-background);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--color-disabled-text);
+    }
+
+    &::-moz-progress-bar {
+      background-color: var(--color-disabled-text);
+    }
+  }
 }
 
-// Non-standard stuff: ah shit, here we go again.
-progress::-webkit-progress-bar {
-  background-color: var(--color-background-progress);
-  margin: 0; padding: 0;
-  border: none;
-  vertical-align: -0.2em;
-}
-
-progress::-webkit-progress-value {
-  background-color: var(--color-progress);
-  margin: 0; padding: 0;
-  border: none;
-  vertical-align: -0.2em;
-}
-
-progress::-webkit-progress-inner-element {
-  margin: 0; padding: 0;
-  border: none;
-}
-
-progress::-moz-progress-bar {
-  background-color: var(--color-progress-bar);
-}
