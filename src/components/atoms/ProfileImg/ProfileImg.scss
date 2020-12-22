@@ -1,0 +1,13 @@
+img.profile_img {
+  border-radius: var(--border-radius);
+  
+  &.small {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &.large {
+    width: 8rem;
+    height: 8rem;
+  }
+}
