@@ -25,6 +25,9 @@ jobs:
       - name: Building Pages
         run: yarn build
 
+      - name: Add Commit Hashes
+        run: git rev-parse HEAD > ./build/COMMIT
+
       - name: Publish into GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
         with:
