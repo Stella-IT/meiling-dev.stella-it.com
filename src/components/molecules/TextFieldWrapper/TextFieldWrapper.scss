@@ -1,0 +1,36 @@
+div.textfield_wrapper {
+  &.half {
+    width: calc(50% - .75rem);
+  }
+
+  &.positive {
+    & input {
+      border-color: var(--color-positive);
+    }
+    & p.caption {
+      color: var(--color-positive);
+    }
+  }
+
+  &.warning {
+    & input {
+      border-color: var(--color-warning);
+    }
+    & p.caption {
+      color: var(--color-warning);
+    }
+  }
+
+  &.negative {
+    & input {
+      border-color: var(--color-negative);
+    }
+    & p.caption {
+      color: var(--color-negative);
+    }
+  }
+  
+  & p.caption {
+    margin-top: .75rem;
+  }
+}
