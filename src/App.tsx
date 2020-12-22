@@ -4,8 +4,11 @@ import './style/_config.scss';
 
 import Btn from './components/atoms/Btn';
 import Progress from './components/atoms/Progress';
-import Input from './components/atoms/Input';
+import Input from './components/atoms/TextField';
 import Caption from './components/atoms/Caption';
+import TextLink from './components/atoms/TextLink';
+import BtnRowWrapper from './components/molecules/BtnRowWrapper';
+import TextFieldWrapper from './components/molecules/TextFieldWrapper';
 
 /**
  * 
@@ -30,6 +33,12 @@ function App() {
       <Input type="email" onChange={(a) => {console.log(a.target.value)}} placeholder="anggggg" />
       <Input type="email" onChange={(a) => {console.log(a.target.value)}} grow />
       <Caption>Caption here.</Caption>
+      <TextLink href="#">TextLink here.</TextLink>
+      <BtnRowWrapper position="center">
+        <Btn>Hello!</Btn>
+      </BtnRowWrapper>
+      <TextFieldWrapper width="half" status="positive" caption="Caption Here">
+      </TextFieldWrapper>
     </div>
   );
 }
