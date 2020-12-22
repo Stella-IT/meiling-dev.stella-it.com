@@ -4,7 +4,7 @@ import './TextField.scss';
 interface Props {
   children?: React.ReactNode;
 
-  type: "number" | "email" | "password";
+  type: "text" | "number" | "email" | "password";
   placeholder?: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
 
