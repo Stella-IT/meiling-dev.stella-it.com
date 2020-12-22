@@ -5,6 +5,7 @@ import './style/_config.scss';
 import Btn from './components/atoms/Btn';
 import Progress from './components/atoms/Progress';
 import Input from './components/atoms/Input';
+import Caption from './components/atoms/Caption';
 
 /**
  * 
@@ -26,8 +27,9 @@ function App() {
       <Btn grow onClick={() => console.log("Dummy")} disabled>asdf</Btn>
       <Progress max={100} value={13} grow />
       <Progress max={100} value={72} grow disabled />
-      <Input type="email" onChange={(a) => {console.log(a.target.value)}} />
+      <Input type="email" onChange={(a) => {console.log(a.target.value)}} placeholder="anggggg" />
       <Input type="email" onChange={(a) => {console.log(a.target.value)}} grow />
+      <Caption>Caption here.</Caption>
     </div>
   );
 }
