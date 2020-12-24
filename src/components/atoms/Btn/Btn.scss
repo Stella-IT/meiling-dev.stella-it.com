@@ -15,12 +15,13 @@ button, a.button, span.button {
     color: var(--color-text-on-theme);
     background-color: var(--color-theme);
 
-    &.disabled {
+    &:disabled, &.disabled {
       color: var(--color-disabled-text);
       border-color: var(--color-disabled-background);
       background-color: var(--color-disabled-background);
     }
 
+    &:not(:disabled):hover, &:not(:disabled):focus,
     &:not(.disabled):hover, &:not(.disabled):focus {
       color: var(--color-theme);
       background-color: transparent;
@@ -31,12 +32,13 @@ button, a.button, span.button {
   &.secondary {
     background-color: transparent;
 
-    &.disabled {
+    &:disabled, &.disabled {
       color: var(--color-disabled-text);
       border-color: var(--color-disabled-background);
       background-color: var(--color-disabled-background);
     }
 
+    &:not(:disabled):hover, &:not(:disabled):focus,
     &:not(.disabled):hover, &:not(.disabled):focus {
       color: var(--color-text-on-theme);
       background-color: var(--color-theme);
@@ -47,10 +49,11 @@ button, a.button, span.button {
   &.tertiary {
     border-color: transparent;
 
-    &.disabled {
+    &:disabled, &.disabled {
       color: var(--color-disabled-text);
     }
 
+    &:not(:disabled):hover, &:not(:disabled):focus,
     &:not(.disabled):hover, &:not(.disabled):focus {
       color: var(--color-text);
     }
@@ -61,11 +64,11 @@ button, a.button, span.button {
     text-align: center;
   }
 
-  &.disabled {
+  &:disabled, &.disabled {
     pointer-events: none;
   }
 
-  &:not(.disabled) {
+  &:not(:disabled), &:not(.disabled) {
     cursor: pointer;
 
     &:active {
