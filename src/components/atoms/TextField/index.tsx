@@ -25,10 +25,9 @@ const Input: React.FC<Props> = ({
 }) => {
   const classes: string[] = [];
   if (grow) classes.push("grow");
-  if (disabled) classes.push("disabled");
 
   return (
-    <input className={classes.join(" ")} type={type} onChange={onChange} placeholder={placeholder} {...props} />
+    <input className={classes.join(" ")} type={type} onChange={onChange} placeholder={placeholder} {...disabled} {...props} />
   )
 }
 
