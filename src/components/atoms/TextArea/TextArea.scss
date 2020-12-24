@@ -1,0 +1,25 @@
+textarea {
+  display: block;
+  padding: calc(var(--space-xs) - 2px);
+  width: 100%;
+
+  color: var(--color-text);
+  border: var(--color-border-textfield) solid 2px;
+  background: transparent;
+
+  resize: vertical;
+
+  transition-duration: var(--time-short);
+
+  &:not(:disabled) {
+    &:hover, &:focus {
+      color: var(--color-theme);
+      border-color: var(--color-theme);
+    }
+  }
+
+  &:disabled {
+    border-color: var(--color-background-textfield-disabled);
+    background: var(--color-background-textfield-disabled);
+  }
+}
