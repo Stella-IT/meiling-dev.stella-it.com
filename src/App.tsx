@@ -7,6 +7,7 @@ import Progress from './components/atoms/Progress';
 import Input from './components/atoms/TextField';
 import Caption from './components/atoms/Caption';
 import TextLink from './components/atoms/TextLink';
+import TextArea from './components/atoms/TextArea';
 import BtnRowWrapper from './components/molecules/BtnRowWrapper';
 import TextFieldWrapper from './components/molecules/TextFieldWrapper';
 
@@ -34,6 +35,7 @@ function App() {
       <Input type="email" onChange={(a) => {console.log(a.target.value)}} grow />
       <Caption>Caption here.</Caption>
       <TextLink href="#">TextLink here.</TextLink>
+      <TextArea onChange={(a) => {console.log(a.target.value)}} />
       <BtnRowWrapper position="center">
         <Btn>Hello!</Btn>
       </BtnRowWrapper>
