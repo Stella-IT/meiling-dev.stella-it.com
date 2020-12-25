@@ -4,33 +4,46 @@ div.textfield_wrapper {
   }
 
   &.positive {
-    & input {
-      border-color: var(--color-positive);
+    input {
+      &:not(:disabled) {
+        border-color: var(--color-positive);
+        color: var(--color-positive);
+        outline-color: var(--color-positive);
+      }
+
+      &:hover, &:active, &:focus {
+        color: var(--color-positive);
+      }
     }
-    & p.caption {
+
+    p.caption {
       color: var(--color-positive);
     }
   }
 
   &.warning {
-    & input {
+    input {
       border-color: var(--color-warning);
+      color: var(--color-warning);
+      outline-color: var(--color-warning);
     }
-    & p.caption {
+    p.caption {
       color: var(--color-warning);
     }
   }
 
   &.negative {
-    & input {
+    input {
       border-color: var(--color-negative);
+      color: var(--color-negative);
+      outline-color: var(--color-negative);
     }
-    & p.caption {
+    p.caption {
       color: var(--color-negative);
     }
   }
   
-  & p.caption {
+  p.caption {
     margin-top: .75rem;
   }
 }
