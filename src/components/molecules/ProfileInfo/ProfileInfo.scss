@@ -1,0 +1,38 @@
+div.profile_info {
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1;
+
+  & > p {
+    margin-bottom: 0;
+    
+    &.msg {
+      font-weight: bold;
+    }
+  }
+
+  &.msg {
+    &.large > p.msg {
+      margin-top: var(--space-s);
+      font-size: 1.5rem;
+    }
+
+    &.small > p.msg {
+      margin-top: var(--space-xs);
+    }
+
+    & > p.email {
+      margin-top: var(--space-xs);
+    }
+  }
+  
+  &:not(.msg) {
+    &.large > p.email {
+      margin-top: var(--space-s);
+    }
+
+    &.small > p.email {
+      margin-top: var(--space-s);
+    }
+  }
+}
