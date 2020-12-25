@@ -5,11 +5,9 @@ div.textfield_wrapper {
 
   &.positive {
     input {
-      &:not(:disabled) {
-        border-color: var(--color-positive);
-        color: var(--color-positive);
-        outline-color: var(--color-positive);
-      }
+      border-color: var(--color-positive);
+      color: var(--color-positive);
+      outline-color: var(--color-positive);
 
       &:hover, &:active, &:focus {
         color: var(--color-positive);
@@ -26,7 +24,12 @@ div.textfield_wrapper {
       border-color: var(--color-warning);
       color: var(--color-warning);
       outline-color: var(--color-warning);
+
+      &:hover, &:active, &:focus {
+        color: var(--color-warning);
+      }
     }
+
     p.caption {
       color: var(--color-warning);
     }
@@ -37,7 +40,12 @@ div.textfield_wrapper {
       border-color: var(--color-negative);
       color: var(--color-negative);
       outline-color: var(--color-negative);
+
+      &:hover, &:active, &:focus {
+        color: var(--color-negative);
+      }
     }
+
     p.caption {
       color: var(--color-negative);
     }
