@@ -13,7 +13,7 @@ interface Props {
   disabled?: boolean;
 };
 
-const Input: React.FC<Props> = ({
+const TextField: React.FC<Props> = ({
   children,
 
   type,
@@ -33,4 +33,4 @@ const Input: React.FC<Props> = ({
   )
 }
 
-export default Input;
+export default TextField;
