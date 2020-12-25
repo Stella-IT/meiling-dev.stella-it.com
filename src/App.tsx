@@ -10,6 +10,8 @@ import TextLink from './components/atoms/TextLink';
 import TextArea from './components/atoms/TextArea';
 import BtnRowWrapper from './components/molecules/BtnRowWrapper';
 import TextFieldWrapper from './components/molecules/TextFieldWrapper';
+import ProfileInfo from './components/molecules/ProfileInfo';
+import CheckBox from './components/atoms/CheckBox';
 
 /**
  * 
@@ -35,12 +37,17 @@ function App() {
       <Input type="email" onChange={(a) => {console.log(a.target.value)}} grow />
       <Caption>Caption here.</Caption>
       <TextLink href="#">TextLink here.</TextLink>
-      <TextArea onChange={(a) => {console.log(a.target.value)}} />
+      <TextArea placeholder={"wa\nsans\n\nwanna have a bad tom?"} onChange={(a) => {console.log(a.target.value)}} />
       <BtnRowWrapper position="center">
         <Btn>Hello!</Btn>
       </BtnRowWrapper>
       <TextFieldWrapper width="half" status="positive" caption="Caption Here">
       </TextFieldWrapper>
+      <ProfileInfo size="small" src="https://placehold.it/48x48" msg="테스트입니다." email="Your E-mail Here"></ProfileInfo>
+      <CheckBox label="Label Here."/>
+      <CheckBox checked label="Label Here."/>
+      <CheckBox disabled label="Label Here."/>
+      <CheckBox disabled checked label="Label Here."/>
     </div>
   );
 }
