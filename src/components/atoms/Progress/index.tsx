@@ -11,6 +11,9 @@ interface Props {
   disabled?: boolean;
 };
 
+const localizedProgressString = "진행 완료.";
+const localizedDisabledString = "비활성화됨.";
+
 const Progress: React.FC<Props> = ({
   children,
 
@@ -25,8 +28,15 @@ const Progress: React.FC<Props> = ({
   if (grow) classes.push("grow");
   if (disabled) classes.push("disabled");
 
+  let percentage = undefined;
+  if (value !== undefined && max !== undefined) percentage = 100 * (value / max);
+  
+  const progressBarLabel = ""
+    + ((percentage !== undefined) ? percentage.toPrecision(2) + "% "+localizedProgressString : "")
+    + ((disabled) ? " "+localizedDisabledString : "");
+
   return (
-    <progress className={classes.join(" ")} value={value} max={max}>{children}</progress>
+    <progress className={classes.join(" ")} value={value} max={max} aria-label={progressBarLabel}>{progressBarLabel} {children}</progress>
   )
 }
 
