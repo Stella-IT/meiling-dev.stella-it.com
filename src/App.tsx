@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './style/_reset.scss';
 import './style/_config.scss';
 
