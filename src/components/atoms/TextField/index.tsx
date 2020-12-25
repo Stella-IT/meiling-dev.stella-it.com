@@ -8,6 +8,7 @@ interface Props {
   placeholder?: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
 
+  readonly?: boolean;
   grow?: boolean;
   disabled?: boolean;
 };
@@ -19,6 +20,7 @@ const Input: React.FC<Props> = ({
   placeholder = "",
   onChange,
 
+  readonly = false,
   grow = false,
   disabled = false,
   ...props
@@ -27,7 +29,7 @@ const Input: React.FC<Props> = ({
   if (grow) classes.push("grow");
 
   return (
-    <input className={classes.join(" ")} type={type} onChange={onChange} placeholder={placeholder} {...disabled} {...props} />
+    <input className={classes.join(" ")} type={type} onChange={onChange} placeholder={placeholder} {...readonly} {...disabled} {...props} />
   )
 }
 
