@@ -26,7 +26,7 @@ input {
     transition-duration: var(--time-short);
 
     &:not(:disabled) {
-      &:hover, &:focus {
+      &:hover, &:focus, &:active {
         color: var(--color-theme);
         border-color: var(--color-theme);
       }
