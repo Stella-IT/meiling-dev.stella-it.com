@@ -29,6 +29,14 @@
   --color-caption-bright: var(--color-gray);
   --color-caption-dark  : var(--color-gray);
 
+  // Color swatches for checkboxes:
+  --color-checkbox-bright         : var(--color-gray);
+  --color-checkbox-active-bright  : var(--color-theme);
+  --color-checkbox-disabled-bright: var(--color-bright-1);
+  --color-checkbox-dark           : var(--color-gray);
+  --color-checkbox-active-dark    : var(--color-theme);
+  --color-checkbox-disabled-dark  : var(--color-dark-1);
+
   // Color swatches for links:
   --color-link-bright: var(--color-theme);
   --color-link-dark  : var(--color-theme);
@@ -48,11 +56,13 @@
   --image-company-dark  : url('https://accounts.stella-it.com/_common/img/logo_white.svg');
   
   // Spacing customization:
-  --space-xl: 3rem;
-  --space-l : 2rem;
-  --space-r : 1.5rem;
-  --space-s : 1rem;
-  --space-xs: .75rem;
+  --space-xl  : 3rem;
+  --space-l   : 2rem;
+  --space-r   : 1.5rem;
+  --space-s   : 1rem;
+  --space-xs  : .75rem;
+  --space-xxs : .5rem;
+  --space-xxxs: .25rem;
 
   // Border radius customization
   --border-radius: 0;
@@ -85,6 +95,9 @@
   --color-background-textfield-disabled: var(--color-bright-2);
   --color-progress                     : var(--color-progress-bright);
   --color-border-textfield             : var(--color-bright-1);
+  --color-border-checkbox              : var(--color-checkbox-bright);
+  --color-border-checkbox-active       : var(--color-checkbox-active-bright);
+  --color-border-checkbox-disabled     : var(--color-checkbox-disabled-bright);
   --shadow                             : 0 4px 16px var(--color-shadow-bright);
 }
 
@@ -105,7 +118,10 @@
   --color-background-progress-disabled : var(--color-progress-dark-disabled);
   --color-background-textfield-disabled: var(--color-dark-2);
   --color-progress                     : var(--color-progress-dark);
-  --color-textfield-border             : var(--color-dark-1);
+  --color-border-textfield             : var(--color-dark-1);
+  --color-border-checkbox              : var(--color-checkbox-dark);
+  --color-border-checkbox-active       : var(--color-checkbox-active-dark);
+  --color-border-checkbox-disabled     : var(--color-checkbox-disabled-dark);
   --shadow                             : 0 4px 16px var(--color-shadow-dark);
 }
 
