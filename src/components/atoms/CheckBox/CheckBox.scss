@@ -1,0 +1,86 @@
+label.checkbox {
+  @supports(-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=checkbox] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      position: relative;
+      top: 1px;
+      margin: 0;
+      margin-right: var(--space-xs);
+
+      width: 1rem;
+      height: 1rem;
+      vertical-align: center;
+      border: 2px solid var(--color-border-checkbox);
+
+      transition-duration: var(--time-short);
+
+      cursor: pointer;
+
+      &:not(:disabled):hover, &:not(:disabled):focus {
+        border-color: var(--color-border-checkbox-active);
+      }
+
+      &:checked {
+        border-color: var(--color-border-checkbox-active);
+
+        &:hover, &:focus {
+          background: var(--color-border-checkbox-active);
+        }
+      }
+
+      &:disabled {
+        border-color: var(--color-border-checkbox-disabled);
+        
+        &:checked {
+          background: var(--color-border-checkbox-disabled);
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -.5px;
+        left: 2.5px;
+
+        width: .25rem;
+        height: .5rem;
+        border: 2px solid var(--color-border-checkbox-active);
+        border-top: 0;
+        border-left: 0;
+        transform: rotate(30deg);
+        opacity: 0;
+
+        transition-duration: var(--time-short);
+      }
+
+      &:not(:disabled):hover::after,
+      &:not(:disabled):focus::after {
+        border-color: var(--color-background-contents);
+      }
+
+      &:checked::after {
+        transform: rotate(45deg);
+        opacity: 1;
+      }
+
+      &:disabled:checked::after {
+        border-color: var(--color-background-contents);
+      }
+    }
+  }
+
+  & > input[type=checkbox] + span {
+    color: var(--color-text);
+    transition-duration: var(--time-short);
+  }
+
+  & > input[type=checkbox]:not(:disabled):hover + span,
+  & > input[type=checkbox]:not(:disabled):focus + span {
+    color: var(--color-theme);
+  }
+
+  & > input[type=checkbox]:disabled + span {
+    color: var(--color-disabled-text);
+  }
+}
