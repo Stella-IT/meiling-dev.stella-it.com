@@ -28,9 +28,9 @@ const Btn: React.FC<Props> = ({
 
   if ((to && disabled) || (href && disabled)) {
     classes.push("button disabled");
-    return (<span className={classes.join(" ")} {...props}>
+    return (<button className={classes.join(" ")} disabled {...props}>
       {children}
-    </span>)
+    </button>)
   } else if (to) {
     classes.push("button");
     return (<Link to={to} className={classes.join(" ")} {...props}>
@@ -42,7 +42,7 @@ const Btn: React.FC<Props> = ({
       {children}
     </a>);
   }
-  return (<button className={classes.join(" ")} {...disabled} {...props}>
+  return (<button className={classes.join(" ")} disabled={disabled} {...props}>
     {children}
   </button>);
 }
