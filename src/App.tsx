@@ -4,7 +4,7 @@ import './style/_config.scss';
 
 import Btn from './components/atoms/Btn';
 import Progress from './components/atoms/Progress';
-import Input from './components/atoms/TextField';
+import TextField from './components/atoms/TextField';
 import Caption from './components/atoms/Caption';
 import TextLink from './components/atoms/TextLink';
 import TextArea from './components/atoms/TextArea';
@@ -12,6 +12,7 @@ import BtnRowWrapper from './components/molecules/BtnRowWrapper';
 import TextFieldWrapper from './components/molecules/TextFieldWrapper';
 import ProfileInfo from './components/molecules/ProfileInfo';
 import CheckBox from './components/atoms/CheckBox';
+import TextAreaWrapper from './components/molecules/TextAreaWrapper';
 
 /**
  * 
@@ -33,21 +34,24 @@ function App() {
       <Btn grow onClick={() => console.log("Dummy")} disabled>asdf</Btn>
       <Progress max={100} value={13} grow />
       <Progress max={100} value={72} grow disabled />
-      <Input type="email" onChange={(a) => {console.log(a.target.value)}} placeholder="anggggg" />
-      <Input type="email" onChange={(a) => {console.log(a.target.value)}} grow />
+      <TextField type="email" onChange={(a) => {console.log(a.target.value)}} placeholder="anggggg" />
+      <TextField type="email" onChange={(a) => {console.log(a.target.value)}} grow />
       <Caption>Caption here.</Caption>
       <TextLink href="#">TextLink here.</TextLink>
       <TextArea placeholder={"wa\nsans\n\nwanna have a bad tom?"} onChange={(a) => {console.log(a.target.value)}} />
       <BtnRowWrapper position="center">
         <Btn>Hello!</Btn>
       </BtnRowWrapper>
-      <TextFieldWrapper width="half" status="positive" caption="Caption Here">
-      </TextFieldWrapper>
+      <TextFieldWrapper width="half" status="positive" caption="Caption Here" />
+      <TextFieldWrapper width="half" status="warning" caption="Caption Here" />
+      <TextFieldWrapper width="half" status="negative" caption="Caption Here" />
+      <TextFieldWrapper width="half" status="normal" caption="Caption Here" />
       <ProfileInfo size="small" src="https://placehold.it/48x48" msg="테스트입니다." email="Your E-mail Here"></ProfileInfo>
       <CheckBox label="Label Here."/>
       <CheckBox checked label="Label Here."/>
       <CheckBox disabled label="Label Here."/>
       <CheckBox disabled checked label="Label Here."/>
+      <TextAreaWrapper placeholder="Placeholder here." status="positive" caption="Caption Here." onChange={(a) => {console.log(a.target.value)}} />
     </div>
   );
 }
