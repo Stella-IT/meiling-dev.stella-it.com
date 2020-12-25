@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ProfileImg: React.FC<Props> = ({
-  src,
+  src = "",
   size = "large",
   ...props
 }) => {
