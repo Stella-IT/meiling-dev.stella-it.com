@@ -12,13 +12,6 @@ html, body {
   max-width: 30rem;
   width: calc(100vw - 2 * var(--space-r));
 
-  & > svg {
-    display: block;
-    margin: 0 auto var(--space-l);
-    width: auto;
-    height: 48px;
-  }
-
   #content_wrapper {
     width: 100%;
     background: var(--color-background-contents);
@@ -33,5 +26,9 @@ html, body {
     &.progress > #content {
       padding-top: var(--space-r);
     }
+  }
+
+  & > div.btn_row_wrapper {
+    margin-top: var(--space-r);
   }
 }
