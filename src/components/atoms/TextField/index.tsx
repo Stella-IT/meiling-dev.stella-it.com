@@ -29,7 +29,15 @@ const TextField: React.FC<Props> = ({
   if (grow) classes.push("grow");
 
   return (
-    <input className={classes.join(" ")} type={type} onChange={onChange} placeholder={placeholder} {...readonly} {...disabled} {...props} />
+    <input
+      className={classes.join(" ")}
+      type={type}
+      onChange={onChange}
+      placeholder={placeholder}
+      {...readonly}
+      {...disabled}
+      {...props}
+    />
   )
 }
 
