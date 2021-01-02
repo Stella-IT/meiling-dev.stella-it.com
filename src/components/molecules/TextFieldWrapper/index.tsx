@@ -5,6 +5,9 @@ import './TextFieldWrapper.scss';
 
 interface Props {
   type?: "text" | "number" | "email" | "password";
+  placeholder?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
+  
   status?: "normal" | "positive" | "warning" | "negative";
   width?: "half" | "full"; 
 
@@ -13,13 +16,20 @@ interface Props {
 
 const TextFieldWrapper: React.FC<Props> = ({
   type = "text",
+  placeholder = "",
+  onChange,
   status = "normal",
   width = "full",
   caption = "",
   ...props
 }) => {
   return (<div className={`textfield_wrapper ${status} ${width}`} {...props}>
-    <TextField grow type={type} onChange={e => {console.log(e.target.value)}} />
+    <TextField
+      grow
+      type={type}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
     <Caption>{caption}</Caption>
   </div>);
 }

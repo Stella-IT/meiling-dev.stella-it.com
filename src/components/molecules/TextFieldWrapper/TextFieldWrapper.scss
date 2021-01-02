@@ -51,7 +51,7 @@ div.textfield_wrapper {
     }
   }
   
-  p.caption {
+  p.caption:not(:empty) {
     margin-top: .75rem;
   }
 }
