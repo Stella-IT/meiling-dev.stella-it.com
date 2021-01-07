@@ -28,6 +28,9 @@ jobs:
       - name: Add Commit Hashes
         run: git rev-parse HEAD > ./build/COMMIT
 
+      - name: Patch for React Router
+        run: cp ./build/index.html ./build/404.html
+        
       - name: Publish into GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
         with:
