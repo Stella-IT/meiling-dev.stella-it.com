@@ -6,6 +6,7 @@ import './style/_config.scss';
 
 import LogoImg from './components/atoms/LogoImg';
 import Index from './components/pages/Index';
+import SignIn from './components/pages/SignIn';
 import SocialSignIn from './components/pages/SocialSignIn';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Index />
+          </Route>
+          <Route exact path="/signin">
+            <SignIn />
           </Route>
           <Route path="/socialsignin">
             <SocialSignIn />

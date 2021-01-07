@@ -7,46 +7,23 @@ import Btn from '../../atoms/Btn';
 import './Index.scss';
 
 const Index: React.FC = () => {
-  type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";
-  interface textFieldStatuses { userId: textFieldStatusTypes };
-
-  const [userId, setUserId] = useState("");
-  const [textFieldStatus, setTextFieldStatus] = useState<textFieldStatuses>({
-    userId: "normal"
-  });
-
-  const checkUserId: () => void = () => {
-    if (userId === "test") {
-      setTextFieldStatus({userId: "positive"});
-      return;
-    }
-    setTextFieldStatus({userId: "negative"});
-  }
-
   return (
     <Fragment>
       <ContentWrapper
-        progressValue={1 / 3 * 100}
+        progressValue={1 / 10 * 100}
         content={
           <>
-            <TextFieldWrapper
-              type="text"
-              status={textFieldStatus.userId}
-              onChange={(e) => {
-                setUserId(e.target.value);
-                setTextFieldStatus({userId: "normal"});
-              }}
-              placeholder="아이디 또는 이메일을 입력하세요."
-              caption={(
-                (textFieldStatus.userId === "negative") ? "존재하지 않는 계정입니다." : ""
-              )}
-            />
-            <TextLink to="signup">계정이 없으신가요?</TextLink>
+            <h1>테스트 모드</h1>
+            <p>테스트 모드에 접속하셨습니다.</p>
+
+            <h2>접속 가능한 페이지</h2>
+            <Btn to="signin" grow styleType="secondary">로그인</Btn>
+            <Btn to="socialsignin" grow styleType="secondary">소셜 계정으로 로그인</Btn>
           </>
         }
         buttonsBottom={[
-          <Btn styleType="secondary" to="socialsignin">소셜 계정으로 로그인</Btn>,
-          <Btn onClick={checkUserId}>다음</Btn>
+          <Btn styleType="secondary" href="https://opensource.stella-it.com/developers/">개발자 리소스</Btn>,
+          <Btn to="signin">로그인</Btn>
         ]}
       />
     </Fragment>
