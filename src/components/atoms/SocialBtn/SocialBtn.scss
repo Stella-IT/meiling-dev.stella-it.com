@@ -1,0 +1,39 @@
+@import '../../../style/_config';
+
+a.social-button {
+  display: inline-block;
+  padding: 0;
+  width: 3.5rem;
+  
+  text-align: center;
+  line-height: calc(3.5rem - 2px);
+  text-decoration: none;
+  border: 1px solid var(--color-theme);
+  background: var(--color-theme);
+  border-radius: var(--border-radius);
+
+  transition-duration: var(--time-short);
+
+  &.github {
+    @include social-button-github;
+  }
+  &.naver {
+    @include social-button-naver;
+  }
+  &.kakao {
+    @include social-button-kakao;
+  }
+  &.google {
+    @include social-button-google;
+    line-height: calc(3.5rem - 8px);
+  }
+
+  &:hover, &:focus {
+    opacity: var(--opacity-hover-focus);
+  }
+
+  &:active {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
