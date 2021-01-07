@@ -1,0 +1,7 @@
+div.social-buttons-group {
+  text-align: center;
+
+  & > a.social-button:not(:first-of-type) {
+    margin-left: var(--space-xxs);
+  }
+}
