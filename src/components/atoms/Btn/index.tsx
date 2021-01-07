@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Btn.scss';
 
 interface Props {
-  children?: React.ReactNode
+  children?: React.ReactNode;
   styleType?: "primary" | "secondary" | "tertiary";
 
   to?: string;
@@ -11,6 +11,7 @@ interface Props {
   onClick?: () => void;
 
   grow?: boolean;
+  isSquare?: boolean;
   disabled?: boolean;
 }
 
@@ -20,11 +21,13 @@ const Btn: React.FC<Props> = ({
   to,
   href,
   grow = false,
+  isSquare = false,
   disabled = false,
   ...props
 }) => {
   const classes: string[] = [ styleType ];
   if (grow) classes.push("grow");
+  if (isSquare) classes.push("square");
 
   if ((to && disabled) || (href && disabled)) {
     classes.push("button disabled");

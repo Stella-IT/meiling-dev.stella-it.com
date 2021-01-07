@@ -75,4 +75,9 @@ button, a.button, span.button {
       transform: translateY(2px);
     }
   }
+
+  &.square {
+    padding: 0;
+    width: 3.5rem;
+  }
 }
