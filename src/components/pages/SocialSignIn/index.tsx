@@ -11,7 +11,7 @@ const SocialSignIn: React.FC = () => {
         progressDisabled
         content={<SocialBtnsGroup />}
         buttonsBottom={[
-          <Btn styleType="secondary" to="/">아이디나 이메일로 로그인</Btn>
+          <Btn styleType="secondary" to="/signin">아이디나 이메일로 로그인</Btn>
         ]}
         buttonsBottomPosition="left"
       />
