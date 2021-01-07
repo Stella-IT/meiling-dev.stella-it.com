@@ -1,8 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 
 import ContentWrapper from '../../templates/ContentWrapper';
-import TextFieldWrapper from '../../molecules/TextFieldWrapper';
-import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Index.scss';
 
