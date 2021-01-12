@@ -6,7 +6,6 @@ import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Signin.scss';
-import { AppSession } from '../../../App';
 import { loginIsUsernameAvailable } from '../../../common';
 
 interface Props {
