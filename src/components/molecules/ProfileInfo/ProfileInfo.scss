@@ -21,17 +21,17 @@ div.profile_info {
       margin-top: var(--space-xs);
     }
 
-    & > p.email {
+    & > p.username {
       margin-top: var(--space-xs);
     }
   }
   
   &:not(.msg) {
-    &.large > p.email {
+    &.large > p.username {
       margin-top: var(--space-s);
     }
 
-    &.small > p.email {
+    &.small > p.username {
       margin-top: var(--space-s);
     }
   }

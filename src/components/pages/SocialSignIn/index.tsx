@@ -8,6 +8,7 @@ const SocialSignIn: React.FC = () => {
   return (
     <Fragment>
       <ContentWrapper
+        pageName="socialsignin"
         progressDisabled
         content={<SocialBtnsGroup />}
         buttonsBottom={[

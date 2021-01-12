@@ -1,3 +1,5 @@
+@import 'mixin';
+
 * {
   box-sizing: border-box;
 }
@@ -9,6 +11,14 @@ html, body {
 
 html {
   font-size: 16px;
+
+  @include media-mobile-only {
+    font-size: 14px;
+  }
+
+  @include media-desktop-only {
+    font-size: 18px;
+  }
 }
 
 body {

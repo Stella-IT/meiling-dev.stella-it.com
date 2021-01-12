@@ -4,6 +4,7 @@ import BtnRowWrapper from '../../molecules/BtnRowWrapper';
 import './ContentWrapper.scss';
 
 interface Props {
+  pageName?: string;
   progressValue?: number;
   progressDisabled?: boolean;
   content?: React.ReactNode;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const ContentWrapper: React.FC<Props> = ({
+  pageName = "",
   progressValue,
   progressDisabled = false,
   content,
@@ -30,7 +32,7 @@ const ContentWrapper: React.FC<Props> = ({
     <div id="wrapper">
       <div id="content_wrapper" className={classes.join(" ")}>
         {progress}
-        <div id="content">
+        <div id="content" className={pageName}>
           {content}
         </div>
       </div>

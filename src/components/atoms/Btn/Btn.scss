@@ -1,3 +1,5 @@
+@import '../../../style/mixin';
+
 button, a.button, span.button {
   display: inline-block;
   padding: 0 calc(2rem - 1px);
@@ -10,6 +12,11 @@ button, a.button, span.button {
   border-radius: var(--border-radius);
   
   transition-duration: var(--time-short);
+
+  @include media-mobile-only {
+    padding: 0 calc(1.5rem - 1px);
+    line-height: calc(3rem - 2px);
+  }
 
   &.primary {
     color: var(--color-text-on-theme);
@@ -79,5 +86,9 @@ button, a.button, span.button {
   &.square {
     padding: 0;
     width: 3.5rem;
+  
+    @include media-mobile-only {
+      width: 3rem;
+    }
   }
 }

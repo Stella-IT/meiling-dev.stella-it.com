@@ -6,14 +6,14 @@ interface Props {
   src?: string;
   size?: "small" | "large";
   msg?: string;
-  email?: string;
+  username?: string;
 }
 
 const ProfileInfo: React.FC<Props> = ({
   src = "",
   size = "large",
   msg,
-  email
+  username
 }) => {
   const classes: string[] = [ "profile_info", size ];
   if (msg) classes.push("msg");
@@ -22,7 +22,7 @@ const ProfileInfo: React.FC<Props> = ({
     <div className={classes.join(" ")}>
       <ProfileImg src={src} size={size}/>
       {msg !== undefined ? <p className="msg">{msg}</p> : <></>}
-      {email !== undefined ? <p className="email">{email}</p> : <></>}
+      {username !== undefined ? <p className="username">{username}</p> : <></>}
     </div>
   );
 }

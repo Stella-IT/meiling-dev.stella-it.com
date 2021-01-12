@@ -1,0 +1,12 @@
+// Breakpoint customization:
+@mixin media-mobile-only {
+  @media (max-width: 480px) {
+    @content
+  }
+};
+
+@mixin media-desktop-only {
+  @media (min-width: 1200px) {
+    @content
+  }
+};

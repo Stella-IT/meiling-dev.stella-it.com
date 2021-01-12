@@ -1,0 +1,28 @@
+#root > div {
+  position: relative;
+}
+
+#wrapper {
+  transition-property: opacity;
+  transition-duration: var(--time-long);
+  transition-timing-function: ease-in;
+
+  &.page-enter {
+    opacity: 0;
+  }
+  
+  &.page-enter-active, &.page-enter-done {
+    opacity: 1;
+  }
+  
+  &.page-enter-active {
+    z-index: -1;
+    opacity: 1;
+    transition-timing-function: ease-out;
+    transition-delay: var(--time-long);
+  }
+
+  &.page-exit-active, &.page-exit-done {
+    display: none;
+  }
+}

@@ -1,31 +1,58 @@
 import React, { Fragment, useState } from 'react';
+import { History } from 'history'; 
 
 import ContentWrapper from '../../templates/ContentWrapper';
 import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Signin.scss';
+import { AppSession } from '../../../App';
+import { loginIsUsernameAvailable } from '../../../common';
 
-const SignIn: React.FC = () => {
+interface Props {
+  history: History;
+};
+
+const SignIn: React.FC<Props> = ({ history }) => {
   type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";
   interface textFieldStatuses { userId: textFieldStatusTypes };
 
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
   const [textFieldStatus, setTextFieldStatus] = useState<textFieldStatuses>({
     userId: "normal"
   });
 
-  const checkUserId: () => void = () => {
-    if (userId === "test") {
-      setTextFieldStatus({userId: "positive"});
-      return;
+  const checkUserId: () => Promise<void> = async () => {
+    const query = await loginIsUsernameAvailable(username);
+    
+    if (query.success) {
+      let state;
+
+      if (query.data) {
+        state = {
+          name: query.data.name,
+          username: username,
+          profileUrl: query.data.profileUrl === "" ? undefined : query.data.profileUrl,
+        }
+      } else {
+        state = {
+          username: username,
+        }
+      }
+
+      history.push({
+        pathname: "/password",
+        state,
+      });
+    } else {
+      setTextFieldStatus({userId: "negative"});
     }
-    setTextFieldStatus({userId: "negative"});
   }
 
   return (
     <Fragment>
       <ContentWrapper
+        pageName="signin"
         progressValue={1 / 3 * 100}
         content={
           <>
@@ -33,7 +60,7 @@ const SignIn: React.FC = () => {
               type="text"
               status={textFieldStatus.userId}
               onChange={(e) => {
-                setUserId(e.target.value);
+                setUsername(e.target.value);
                 setTextFieldStatus({userId: "normal"});
               }}
               placeholder="아이디 또는 이메일을 입력하세요."
@@ -45,8 +72,8 @@ const SignIn: React.FC = () => {
           </>
         }
         buttonsBottom={[
-          <Btn styleType="secondary" to="socialsignin">소셜 계정으로 로그인</Btn>,
-          <Btn onClick={checkUserId}>다음</Btn>
+          <Btn key="button_socialsignin" styleType="secondary" to="socialsignin">소셜 계정으로 로그인</Btn>,
+          <Btn key="button_next" onClick={checkUserId}>다음</Btn>
         ]}
       />
     </Fragment>
