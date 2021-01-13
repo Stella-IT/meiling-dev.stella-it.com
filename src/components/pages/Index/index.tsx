@@ -14,6 +14,7 @@ const Index: React.FC<Props> = ({
   const [loadState, setLoadState] = useState({
     loaded: false,
     loggedIn: false,
+    commsFailed: false,
   });
 
   useEffect(() => {
@@ -24,17 +25,20 @@ const Index: React.FC<Props> = ({
           setLoadState({
             loaded: true,
             loggedIn: (data) ? data.length > 0 : false,
+            commsFailed: false,
           });
         } catch(e) {
           if (e.response) {
             setLoadState({
               loaded: true,
               loggedIn: false,
+              commsFailed: false,
             });
           } else {
             setLoadState({
               loaded: false,
               loggedIn: false,
+              commsFailed: true,
             });
           }
         }
@@ -58,6 +62,12 @@ const Index: React.FC<Props> = ({
           pageName="index"
           progressValue={1 / 10 * 100}
           content={
+            (loadState.commsFailed) ?
+            <>
+              <h1>인증 서버와의 통신 중 장애가 발생했습니다.</h1>
+              <p>Meiling API 가 온라인인지 확인하세요.</p>
+            </>
+            :
             <>
               <h1>인증 서버와 통신 중 입니다.</h1>
               <p>잠시만 기다려 주세요.</p>
