@@ -13,6 +13,7 @@ const SelectAccount: React.FC<Props> = ({
 }) => {
   const [loadState, setLoadState] = useState({
     loaded: false,
+    error: false,
     users: [],
   });
 
@@ -23,14 +24,33 @@ const SelectAccount: React.FC<Props> = ({
           const users = await getLoggedInUsers();
           setLoadState({
             loaded: true,
+            error: false,
             users,
           });
         } catch(e) {
-          // error!
+          setLoadState({
+            loaded: false,
+            error: true,
+            users: [],
+          });
         }
       })();
     }
   });
+
+  let content: JSX.Element | undefined;
+
+  if (!loadState.loaded) {
+    content = <>
+      <h1>인증 서버와 통신 중 입니다.</h1>
+      <p>잠시만 기다려 주세요.</p>
+    </>;
+  } else if (loadState.error) {
+    content = <>
+      <h1>인증 서버와의 통신 중 장애가 발생했습니다.</h1>
+      <p>Meiling API 가 온라인인지 확인하세요.</p>
+    </>
+  }
 
   return (
     <Fragment>
@@ -38,19 +58,12 @@ const SelectAccount: React.FC<Props> = ({
         pageName="index"
         progressValue={1 / 10 * 100}
         content={
-          <>
-            {
-              loadState.loaded ? (
-                loadState.users.length > 0 ? 
-                  <>
-                    <h1>아직 구현 안된 로그인 된 계정 뭐시기 암튼 무언가!</h1>
-                  </> : 
-                  <Redirect to={`/login${location.search}`} />
-              ) : <>
-                <h1>서버랑 통신 중!</h1>
-              </>
-            }
-          </>
+          content ? content :
+            loadState.users.length > 0 ? 
+              <>
+                <h1>아직 구현 안된 로그인 된 계정 뭐시기 암튼 무언가!</h1>
+              </> : 
+              <Redirect to={`/login${location.search}`} />
         }
         buttonsBottom={[]}
       />
