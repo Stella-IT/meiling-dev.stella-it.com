@@ -7,6 +7,7 @@ import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Signin.scss';
 import { loginIsUsernameAvailable } from '../../../common';
+import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 
 interface Props {
   history: History;
@@ -14,15 +15,36 @@ interface Props {
 
 const SignIn: React.FC<Props> = ({ history }) => {
   type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";
-  interface textFieldStatuses { userId: textFieldStatusTypes };
+  interface textFieldStatuses { 
+    userId: {
+      status: textFieldStatusTypes;
+      message: string;
+    };
+
+  };
 
   const [username, setUsername] = useState("");
   const [textFieldStatus, setTextFieldStatus] = useState<textFieldStatuses>({
-    userId: "normal"
+    userId: {
+      status: "normal",
+      message: "",
+    }
   });
 
   const checkUserId: () => Promise<void> = async () => {
-    const query = await loginIsUsernameAvailable(username);
+    let query;
+    try {
+      query = await loginIsUsernameAvailable(username);
+    } catch(e) {
+      const result = parseMeilingV1ErrorResponse(e);
+      setTextFieldStatus({
+        userId: {
+          status: 'negative',
+          message: getMessageFromMeilingV1Error(result),
+        }
+      });
+      return;
+    }
     
     if (query.success) {
       let state;
@@ -44,7 +66,12 @@ const SignIn: React.FC<Props> = ({ history }) => {
         state,
       });
     } else {
-      setTextFieldStatus({userId: "negative"});
+      setTextFieldStatus({
+        userId: {
+          status: 'negative',
+          message: '사용자 이름이 존재하지 않습니다.',
+        }
+      });
     }
   }
 
@@ -57,15 +84,18 @@ const SignIn: React.FC<Props> = ({ history }) => {
           <>
             <TextFieldWrapper
               type="text"
-              status={textFieldStatus.userId}
+              status={textFieldStatus.userId.status}
               onChange={(e) => {
                 setUsername(e.target.value);
-                setTextFieldStatus({userId: "normal"});
+                setTextFieldStatus({
+                  userId: {
+                    status: 'normal',
+                    message: ''
+                  }
+                });
               }}
               placeholder="아이디 또는 이메일을 입력하세요."
-              caption={(
-                (textFieldStatus.userId === "negative") ? "존재하지 않는 계정입니다." : ""
-              )}
+              caption={textFieldStatus.userId.message}
             />
             <TextLink to="signup">계정이 없으신가요?</TextLink>
           </>

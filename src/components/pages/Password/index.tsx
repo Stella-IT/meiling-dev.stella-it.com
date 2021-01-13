@@ -8,6 +8,8 @@ import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Password.scss';
+import { loginWithUsernameAndPassword } from '../../../common';
+import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 
 
 interface Props {
@@ -26,11 +28,19 @@ const Password: React.FC<Props> = ({
   location,
 }) => {
   type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";
-  interface textFieldStatuses { userPassword: textFieldStatusTypes };
+  interface textFieldStatuses { 
+    password: {
+      status: textFieldStatusTypes,
+      message: string
+    } 
+  };
 
-  const [userPassword, setUserPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [textFieldStatus, setTextFieldStatus] = useState<textFieldStatuses>({
-    userPassword: "normal"
+    password: {
+      status: "normal",
+      message: "",
+    }
   });
 
   const name = (location.state as State)?.name;
@@ -41,12 +51,31 @@ const Password: React.FC<Props> = ({
     return <Redirect to={"/signin"}/>;
   }
 
-  const checkPassword: () => void = () => {
-    if (userPassword === "test") {
-      setTextFieldStatus({userPassword: "positive"});
-      return ;
+  const checkPassword: () => Promise<void> = async () => {
+    let query;
+    try {
+      query = await loginWithUsernameAndPassword(username, password);
+    } catch(e) {
+      const result = parseMeilingV1ErrorResponse(e);
+      setTextFieldStatus({
+        password: {
+          status: 'negative',
+          message: getMessageFromMeilingV1Error(result),
+        }
+      });
+      return;
     }
-    setTextFieldStatus({userPassword: "negative"});
+    
+    if (query.success) {
+      console.log("YES! OKTOBERFEST!");
+    } else {
+      setTextFieldStatus({
+        password: {
+          status: 'negative',
+          message: '알 수 없는 오류가 발생했습니다.',
+        }
+      });
+    }
   };
 
   return (
@@ -63,13 +92,13 @@ const Password: React.FC<Props> = ({
           />
           <TextFieldWrapper
             type="password"
-            status={textFieldStatus.userPassword}
+            status={textFieldStatus.password.status}
             onChange={e => {
-              setUserPassword(e.target.value);
-              setTextFieldStatus({userPassword: "normal"});
+              setPassword(e.target.value);
+              setTextFieldStatus({password: { status: "normal", message: ""} });
             }}
             placeholder="비밀번호를 입력하세요."
-            caption={(textFieldStatus.userPassword === "negative") ? "비밀번호가 틀렸습니다." : ""}
+            caption={textFieldStatus.password.message}
           />
           <TextLink to="find-password">비밀번호를 잊으셨나요?</TextLink>
           <TextLink to="find-password">비밀번호 없이 로그인합니다.</TextLink>
