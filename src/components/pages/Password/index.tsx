@@ -96,7 +96,7 @@ const Password: React.FC<Props> = ({
             msg={`환영합니다.${(name !== undefined) ? ` ${name} 님.`:''}`}
             username={username}
           />
-          
+
           <input type="hidden" autoComplete="username" value={username} />
           <TextFieldWrapper
             type="password"
@@ -107,6 +107,7 @@ const Password: React.FC<Props> = ({
             }}
             placeholder="비밀번호를 입력하세요."
             caption={textFieldStatus.password.message}
+            autoComplete="password"
           />
           <TextLink to="find-password">비밀번호를 잊으셨나요?</TextLink>
           <TextLink to="find-password">비밀번호 없이 로그인합니다.</TextLink>
