@@ -27,6 +27,7 @@ const Index: React.FC = () => {
 
                 alert(token);
               }} grow styleType="secondary">메이링 서버 세션토큰 발급 테스트</Btn>
+              <Btn href="https://github.com/Stella-IT/meiling-dev.stella-it.com" grow styleType="secondary">깃허브 레포지토리 접속</Btn>
             </div>
           </>
         }
