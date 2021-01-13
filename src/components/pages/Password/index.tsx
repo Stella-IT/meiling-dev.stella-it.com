@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Location, History } from 'history';
 import { Redirect } from 'react-router';
 
 import ContentWrapper from '../../templates/ContentWrapper';
@@ -23,7 +22,6 @@ interface State {
 };
 
 const Password: React.FC<Props> = ({
-  history,
   location,
 }) => {
   type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";

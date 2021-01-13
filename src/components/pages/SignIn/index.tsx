@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { History } from 'history'; 
 
 import { RouteComponentProps } from 'react-router';
 
@@ -12,7 +11,7 @@ import { loginIsUsernameAvailable } from '../../../common';
 import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 
 interface Props extends RouteComponentProps {
-  
+
 };
 
 const SignIn: React.FC<Props> = ({ history, location }) => {
