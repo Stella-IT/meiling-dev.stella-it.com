@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { getMeilingSessionToken } from '../../../common/';
 import ContentWrapper from '../../templates/ContentWrapper';
 import Btn from '../../atoms/Btn';
-import './Index.scss';
+import './TestMode.scss';
 
 const Index: React.FC = () => {
   return (
