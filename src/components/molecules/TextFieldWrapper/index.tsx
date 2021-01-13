@@ -12,6 +12,7 @@ interface Props {
   width?: "half" | "full"; 
 
   caption?: string;
+  autoComplete?: string;
 }
 
 const TextFieldWrapper: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const TextFieldWrapper: React.FC<Props> = ({
   status = "normal",
   width = "full",
   caption = "",
+  autoComplete,
   ...props
 }) => {
   return (<div className={`textfield_wrapper ${status} ${width}`} {...props}>
@@ -29,6 +31,7 @@ const TextFieldWrapper: React.FC<Props> = ({
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      autoComplete={autoComplete}
     />
     <Caption>{caption}</Caption>
   </div>);

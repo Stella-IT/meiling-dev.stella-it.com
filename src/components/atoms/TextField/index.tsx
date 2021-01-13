@@ -7,6 +7,7 @@ interface Props {
   type: "text" | "number" | "email" | "password";
   placeholder?: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
+  autoComplete?: string;
 
   readonly?: boolean;
   grow?: boolean;
@@ -19,6 +20,7 @@ const TextField: React.FC<Props> = ({
   type,
   placeholder = "",
   onChange,
+  autoComplete,
 
   readonly = false,
   grow = false,
@@ -34,6 +36,8 @@ const TextField: React.FC<Props> = ({
       type={type}
       onChange={onChange}
       placeholder={placeholder}
+      autoComplete={autoComplete}
+      
       {...readonly}
       {...disabled}
       {...props}

@@ -96,6 +96,8 @@ const Password: React.FC<Props> = ({
             msg={`환영합니다.${(name !== undefined) ? ` ${name} 님.`:''}`}
             username={username}
           />
+          
+          <input type="hidden" autoComplete="username" value={username} />
           <TextFieldWrapper
             type="password"
             status={textFieldStatus.password.status}
