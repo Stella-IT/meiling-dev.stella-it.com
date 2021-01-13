@@ -29,7 +29,7 @@ const SelectAccount: React.FC<Props> = ({
           });
         } catch(e) {
           setLoadState({
-            loaded: false,
+            loaded: true,
             error: true,
             users: [],
           });
