@@ -1,5 +1,5 @@
 import React, { Fragment, useState, Context, createContext } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import './style/_reset.scss';
@@ -10,7 +10,9 @@ import LogoImg from './components/atoms/LogoImg';
 import SignIn from './components/pages/SignIn';
 import SocialSignIn from './components/pages/SocialSignIn';
 import Password from './components/pages/Password';
+import Index from './components/pages/Index';
 import TestMode from './components/pages/TestMode';
+import SelectAccount from './components/pages/SelectAccount';
 
 // TODO: Fix later
 interface AppSessionData {
@@ -46,13 +48,12 @@ function App() {
                 <CSSTransition key={location.key} timeout={400} classNames="page">
 
                   <Switch location={location}>
-                    <Route exact path="/">
-                      <Redirect to={"/testmode"} />
-                    </Route>
+                    <Route exact path="/" component={Index} />
                     <Route exact path="/signin" component={SignIn} />
                     <Route exact path="/socialsignin" component={SocialSignIn} />
                     <Route exact path="/password" component={Password} />
                     <Route exact path="/testmode" component={TestMode} />
+                    <Route exact path="/selectaccount" component={SelectAccount} />
                   </Switch>
 
                 </CSSTransition>

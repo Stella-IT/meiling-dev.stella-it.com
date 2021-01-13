@@ -70,11 +70,37 @@ export async function loginWithUsernameAndPassword(username: string, password: s
   return data;
 }
 
+export async function getLoggedInUsers() {
+  const token = await getMeilingSessionToken();
+
+  const data = (await axios.get(`${server}/v1/meiling/users`,
+    {
+      headers: (token === null || token === undefined) ? undefined : {
+        'Authorization': `Bearer ${token}`,
+    },
+  })).data;
+
+  return data;
+}
+
+export async function logout(uuid?: string) {
+  const token = await getMeilingSessionToken();
+
+  const data = (await axios.get(`${server}/v1/meiling/signout${uuid !== undefined ? `?uuid=${uuid}` : ""}`,
+    {
+      headers: (token === null || token === undefined) ? undefined : {
+        'Authorization': `Bearer ${token}`,
+    },
+  })).data;
+
+  return data;
+}
+
 export function parseQueryUrl(url?: string) {
   if (url === undefined) {
     return [];
   }
-  
+
   const searchQueries = url.split('?',2)[1];
   const result: {name: string, value?: string}[] = [];
 
