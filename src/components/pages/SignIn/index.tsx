@@ -11,9 +11,10 @@ import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../..
 
 interface Props {
   history: History;
+  location: Location;
 };
 
-const SignIn: React.FC<Props> = ({ history }) => {
+const SignIn: React.FC<Props> = ({ history, location }) => {
   type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";
   interface textFieldStatuses { 
     userId: {
@@ -63,6 +64,7 @@ const SignIn: React.FC<Props> = ({ history }) => {
 
       history.push({
         pathname: "/password",
+        search: location.search,
         state,
       });
     } else {
