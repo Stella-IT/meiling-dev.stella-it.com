@@ -53,8 +53,6 @@ const Password: React.FC<Props> = ({
     try {
       query = await loginWithUsernameAndPassword(username, password);
     } catch(e) {
-      const result = parseMeilingV1ErrorResponse(e);
-      
       if (e.response) {
         const result = parseMeilingV1ErrorResponse(e);
         setTextFieldStatus({
