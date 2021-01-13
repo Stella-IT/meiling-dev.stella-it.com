@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { History } from 'history'; 
 
+import { RouteComponentProps } from 'react-router';
+
 import ContentWrapper from '../../templates/ContentWrapper';
 import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
@@ -9,9 +11,8 @@ import './Signin.scss';
 import { loginIsUsernameAvailable } from '../../../common';
 import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 
-interface Props {
-  history: History;
-  location: Location;
+interface Props extends RouteComponentProps {
+  
 };
 
 const SignIn: React.FC<Props> = ({ history, location }) => {
@@ -21,8 +22,8 @@ const SignIn: React.FC<Props> = ({ history, location }) => {
       status: textFieldStatusTypes;
       message: string;
     };
-
   };
+
 
   const [username, setUsername] = useState("");
   const [textFieldStatus, setTextFieldStatus] = useState<textFieldStatuses>({
@@ -103,7 +104,7 @@ const SignIn: React.FC<Props> = ({ history, location }) => {
           </>
         }
         buttonsBottom={[
-          <Btn key="button_socialsignin" styleType="secondary" to="socialsignin">소셜 계정으로 로그인</Btn>,
+          <Btn key="button_socialsignin" styleType="secondary" to={`socialsignin${location.search}`}>소셜 계정으로 로그인</Btn>,
           <Btn key="button_next" onClick={checkUserId}>다음</Btn>
         ]}
       />

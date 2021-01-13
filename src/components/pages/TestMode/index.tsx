@@ -4,12 +4,17 @@ import { getMeilingSessionToken } from '../../../common/';
 import ContentWrapper from '../../templates/ContentWrapper';
 import Btn from '../../atoms/Btn';
 import './TestMode.scss';
+import { RouteComponentProps } from 'react-router-dom';
 
-const Index: React.FC = () => {
+interface Props extends RouteComponentProps {
+  
+};
+
+const TestMode: React.FC<Props> = () => {
   return (
     <Fragment>
       <ContentWrapper
-        pageName="index"
+        pageName="testmode"
         progressValue={1 / 10 * 100}
         content={
           <>
@@ -40,4 +45,4 @@ const Index: React.FC = () => {
   );
 }
 
-export default Index;
+export default TestMode;

@@ -3,8 +3,15 @@ import React, { Fragment } from 'react';
 import ContentWrapper from '../../templates/ContentWrapper';
 import Btn from '../../atoms/Btn';
 import SocialBtnsGroup from '../../molecules/SocialBtnsGroup';
+import { RouteComponentProps } from 'react-router-dom';
 
-const SocialSignIn: React.FC = () => {
+interface Props extends RouteComponentProps {
+  
+};
+
+const SocialSignIn: React.FC<Props> = ({
+  location,
+}) => {
   return (
     <Fragment>
       <ContentWrapper
@@ -12,7 +19,7 @@ const SocialSignIn: React.FC = () => {
         progressDisabled
         content={<SocialBtnsGroup />}
         buttonsBottom={[
-          <Btn styleType="secondary" to="/signin">아이디나 이메일로 로그인</Btn>
+          <Btn styleType="secondary" to={`signin${location.search}`}>아이디나 이메일로 로그인</Btn>
         ]}
         buttonsBottomPosition="left"
       />

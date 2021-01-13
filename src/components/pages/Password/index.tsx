@@ -8,13 +8,12 @@ import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Password.scss';
-import { loginWithUsernameAndPassword } from '../../../common';
+import { loginWithUsernameAndPassword, parseQueryUrl } from '../../../common';
 import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
+import { RouteComponentProps } from 'react-router-dom';
 
-
-interface Props {
-  history: History;
-  location: Location;
+interface Props extends RouteComponentProps {
+  
 };
 
 interface State {
@@ -67,7 +66,16 @@ const Password: React.FC<Props> = ({
     }
     
     if (query.success) {
-      console.log("YES! OKTOBERFEST!");
+      const data = parseQueryUrl(location?.search);
+      const redirectUri = data.find(n => n.name === "redirect_uri");
+
+      let redirectTo = "/";
+
+      if (redirectUri && redirectUri.value) {
+        redirectTo = redirectUri.value;
+      }
+
+      window.location.href = redirectTo;
     } else {
       setTextFieldStatus({
         password: {
@@ -105,7 +113,7 @@ const Password: React.FC<Props> = ({
         </>
       }
       buttonsBottom={[
-        <Btn styleType="secondary" to="signin">이전</Btn>,
+        <Btn styleType="secondary" to={`signin${location.search}`}>이전</Btn>,
         <Btn onClick={checkPassword}>다음</Btn>
       ]}
     />
