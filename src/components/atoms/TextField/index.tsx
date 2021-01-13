@@ -7,6 +7,7 @@ interface Props {
   type: "text" | "number" | "email" | "password";
   placeholder?: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
+  onEnter?: () => any;
   autoComplete?: string;
 
   readonly?: boolean;
@@ -20,6 +21,7 @@ const TextField: React.FC<Props> = ({
   type,
   placeholder = "",
   onChange,
+  onEnter,
   autoComplete,
 
   readonly = false,
@@ -35,9 +37,16 @@ const TextField: React.FC<Props> = ({
       className={classes.join(" ")}
       type={type}
       onChange={onChange}
+      onKeyPress={
+        (e) => {
+          if (!e.shiftKey && e.key === "Enter") {
+            if (onEnter) onEnter();
+          }
+        }
+      }
       placeholder={placeholder}
       autoComplete={autoComplete}
-      
+
       {...readonly}
       {...disabled}
       {...props}

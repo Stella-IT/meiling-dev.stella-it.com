@@ -96,9 +96,12 @@ const SignIn: React.FC<Props> = ({ history, location }) => {
                   }
                 });
               }}
+              onEnter={() => {
+                checkUserId();
+              }}
               placeholder="아이디 또는 이메일을 입력하세요."
               caption={textFieldStatus.userId.message}
-              autoComplete="username"
+              autoComplete="username email"
             />
             <TextLink to="signup">계정이 없으신가요?</TextLink>
           </>

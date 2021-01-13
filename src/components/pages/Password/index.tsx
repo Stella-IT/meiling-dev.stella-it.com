@@ -97,7 +97,7 @@ const Password: React.FC<Props> = ({
             username={username}
           />
 
-          <input type="hidden" autoComplete="username" value={username} />
+          <input className="hidden" autoComplete="username email" value={username} readOnly />
           <TextFieldWrapper
             type="password"
             status={textFieldStatus.password.status}
@@ -105,6 +105,7 @@ const Password: React.FC<Props> = ({
               setPassword(e.target.value);
               setTextFieldStatus({password: { status: "normal", message: ""} });
             }}
+            onEnter={checkPassword}
             placeholder="비밀번호를 입력하세요."
             caption={textFieldStatus.password.message}
             autoComplete="password"

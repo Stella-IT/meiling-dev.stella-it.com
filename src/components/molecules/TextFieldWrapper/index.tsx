@@ -7,6 +7,7 @@ interface Props {
   type?: "text" | "number" | "email" | "password";
   placeholder?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => any;
+  onEnter?: () => any;
   
   status?: "normal" | "positive" | "warning" | "negative";
   width?: "half" | "full"; 
@@ -19,6 +20,7 @@ const TextFieldWrapper: React.FC<Props> = ({
   type = "text",
   placeholder = "",
   onChange,
+  onEnter,
   status = "normal",
   width = "full",
   caption = "",
@@ -31,6 +33,7 @@ const TextFieldWrapper: React.FC<Props> = ({
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      onEnter={onEnter}
       autoComplete={autoComplete}
     />
     <Caption>{caption}</Caption>
