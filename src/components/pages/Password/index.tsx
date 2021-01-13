@@ -54,12 +54,24 @@ const Password: React.FC<Props> = ({
       query = await loginWithUsernameAndPassword(username, password);
     } catch(e) {
       const result = parseMeilingV1ErrorResponse(e);
-      setTextFieldStatus({
-        password: {
-          status: 'negative',
-          message: getMessageFromMeilingV1Error(result),
-        }
-      });
+      
+      if (e.response) {
+        const result = parseMeilingV1ErrorResponse(e);
+        setTextFieldStatus({
+          password: {
+            status: 'negative',
+            message: getMessageFromMeilingV1Error(result),
+          }
+        });
+      } else {
+        setTextFieldStatus({
+          password: {
+            status: 'negative',
+            message: 'Meiling API 서버와의 통신에 실패 했습니다.',
+          }
+        });
+      }
+
       return;
     }
     
