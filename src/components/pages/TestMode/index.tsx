@@ -34,7 +34,6 @@ const TestMode: React.FC<Props> = () => {
                 }
               }} grow styleType="secondary">로그아웃</Btn>
               <Btn to="socialsignin" grow styleType="secondary">소셜 계정으로 로그인</Btn>
-              <Btn to="password" grow styleType="secondary">패스워드 입력</Btn>
               <Btn onClick={async () => {
                 const token = await getMeilingSessionToken();
 
