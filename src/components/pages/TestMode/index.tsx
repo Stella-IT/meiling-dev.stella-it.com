@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { getMeilingSessionToken, logout } from '../../../common/';
+import { getMeilingSessionToken, signout } from '../../../common/';
 import ContentWrapper from '../../templates/ContentWrapper';
 import Btn from '../../atoms/Btn';
 import './TestMode.scss';
@@ -24,15 +24,7 @@ const TestMode: React.FC<Props> = () => {
             <h2>접속 가능한 페이지</h2>
             <div className='btn_column_wrapper'>
               <Btn to="signin" grow styleType="secondary">로그인</Btn>
-              <Btn onClick={async () => {
-                const data = await logout();
-
-                if (data.success) {
-                  alert("로그아웃 되었습니다!");
-                } else {
-                  alert("로그아웃에 실패했습니다.");
-                }
-              }} grow styleType="secondary">로그아웃</Btn>
+              <Btn to="signout" grow styleType="secondary">로그아웃</Btn>
               <Btn to="socialsignin" grow styleType="secondary">소셜 계정으로 로그인</Btn>
               <Btn onClick={async () => {
                 try {

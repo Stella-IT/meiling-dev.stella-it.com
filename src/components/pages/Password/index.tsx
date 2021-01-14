@@ -7,7 +7,7 @@ import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Password.scss';
-import { loginWithUsernameAndPassword, parseQueryUrl } from '../../../common';
+import { signInWithUsernameAndPassword, parseQueryUrl } from '../../../common';
 import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -51,7 +51,7 @@ const Password: React.FC<Props> = ({
   const checkPassword: () => Promise<void> = async () => {
     let query;
     try {
-      query = await loginWithUsernameAndPassword(username, password);
+      query = await signInWithUsernameAndPassword(username, password);
     } catch(e) {
       if (e.response) {
         const result = parseMeilingV1ErrorResponse(e);

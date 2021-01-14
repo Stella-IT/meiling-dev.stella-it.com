@@ -1,38 +1,51 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
-import { getLoggedInUsers } from '../../../common';
+import { signout, parseQueryUrl } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import Btn from '../../atoms/Btn';
 
 interface Props extends RouteComponentProps {
   
 };
 
-const Users: React.FC<Props> = ({
+const SignOut: React.FC<Props> = ({
   location
 }) => {
   const [loadState, setLoadState] = useState({
     loaded: false,
     error: false,
-    users: [],
   });
 
   useEffect(() => {
     if (!loadState.loaded) {
       (async () => {
         try {
-          const users = await getLoggedInUsers();
+          let uuid = undefined;
+          let redirectTo = "/"
+          if (location.search) {
+            const parsedData = parseQueryUrl(location.search);
+            const uuidData = parsedData.find(n => n.name === "uuid");
+            const redirectData = parsedData.find(n => n.name === "uuid");
+
+            if (uuidData) {
+              uuid = uuidData.value;
+            }
+            if (redirectData && redirectData.value) {
+              redirectTo = redirectData.value;
+            }
+          }
+
+          await signout(uuid);
           setLoadState({
             loaded: true,
             error: false,
-            users,
           });
+
+          window.location.href = redirectTo;
         } catch(e) {
           setLoadState({
             loaded: true,
             error: true,
-            users: [],
           });
         }
       })();
@@ -43,7 +56,7 @@ const Users: React.FC<Props> = ({
 
   if (!loadState.loaded) {
     content = <>
-      <h1>계정 정보를 불러오는 중 입니다.</h1>
+      <h1>로그아웃 하는 중 입니다.</h1>
       <p>잠시만 기다려 주세요.</p>
     </>;
   } else if (loadState.error) {
@@ -60,14 +73,7 @@ const Users: React.FC<Props> = ({
         progressValue={1 / 10 * 100}
         content={
           content ? content :
-            loadState.users.length > 0 ? 
-              <>
-                <h1>계정 선택</h1>
-                {loadState.users.map((user: any) => <Btn styleType="secondary" grow>{user.name}</Btn>)}
-                <Btn grow to={`/signin${location.search}`} styleType="tertiary">새로운 계정 추가</Btn>
-                <Btn grow to={`/signout?redirect_uri=${window.location.href}`} styleType="tertiary">로그아웃</Btn>
-              </> : 
-              <Redirect to={`/signin${location.search}`} />
+              <Redirect to={`/${location.search}`} />
         }
         buttonsBottom={[]}
       />
@@ -75,4 +81,4 @@ const Users: React.FC<Props> = ({
   );
 }
 
-export default Users;
+export default SignOut;

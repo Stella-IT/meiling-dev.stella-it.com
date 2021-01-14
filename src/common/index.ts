@@ -31,7 +31,7 @@ export async function getMeilingSessionToken(): Promise<string> {
   }
 }
 
-export async function loginIsUsernameAvailable(username: string) {
+export async function isUsernameAvailable(username: string) {
   const token = await getMeilingSessionToken();
 
   const data = (await axios.post(`${server}/v1/meiling/signin`,
@@ -50,7 +50,7 @@ export async function loginIsUsernameAvailable(username: string) {
   return data;
 }
 
-export async function loginWithUsernameAndPassword(username: string, password: string) {
+export async function signInWithUsernameAndPassword(username: string, password: string) {
   const token = await getMeilingSessionToken();
 
   const data = (await axios.post(`${server}/v1/meiling/signin`,
@@ -83,7 +83,7 @@ export async function getLoggedInUsers() {
   return data;
 }
 
-export async function logout(uuid?: string) {
+export async function signout(uuid?: string) {
   const token = await getMeilingSessionToken();
 
   const data = (await axios.get(`${server}/v1/meiling/signout${uuid !== undefined ? `?uuid=${uuid}` : ""}`,

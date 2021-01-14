@@ -7,7 +7,7 @@ import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
 import './Signin.scss';
-import { loginIsUsernameAvailable } from '../../../common';
+import { isUsernameAvailable } from '../../../common';
 import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 
 interface Props extends RouteComponentProps {
@@ -35,7 +35,7 @@ const SignIn: React.FC<Props> = ({ history, location }) => {
   const checkUserId: () => Promise<void> = async () => {
     let query;
     try {
-      query = await loginIsUsernameAvailable(username);
+      query = await isUsernameAvailable(username);
     } catch(e) {
       if (e.response) {
         const result = parseMeilingV1ErrorResponse(e);

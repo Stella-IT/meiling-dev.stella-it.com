@@ -8,6 +8,7 @@ import './style/_transition.scss';
 
 import LogoImg from './components/atoms/LogoImg';
 import SignIn from './components/pages/SignIn';
+import SignOut from './components/pages/SignOut';
 import SocialSignIn from './components/pages/SocialSignIn';
 import Password from './components/pages/Password';
 import Index from './components/pages/Index';
@@ -50,6 +51,7 @@ function App() {
                   <Switch location={location}>
                     <Route exact path="/" component={Index} />
                     <Route exact path="/signin" component={SignIn} />
+                    <Route exact path="/signout" component={SignOut} />
                     <Route exact path="/socialsignin" component={SocialSignIn} />
                     <Route exact path="/password" component={Password} />
                     <Route exact path="/testmode" component={TestMode} />
