@@ -43,7 +43,7 @@ const Users: React.FC<Props> = ({
 
   if (!loadState.loaded) {
     content = <>
-      <h1>인증 서버와 통신 중 입니다.</h1>
+      <h1>계정 정보를 불러오는 중 입니다.</h1>
       <p>잠시만 기다려 주세요.</p>
     </>;
   } else if (loadState.error) {
