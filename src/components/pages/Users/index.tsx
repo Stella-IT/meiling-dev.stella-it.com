@@ -3,12 +3,13 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getLoggedInUsers } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
+import Btn from '../../atoms/Btn';
 
 interface Props extends RouteComponentProps {
   
 };
 
-const SelectAccount: React.FC<Props> = ({
+const Users: React.FC<Props> = ({
   location
 }) => {
   const [loadState, setLoadState] = useState({
@@ -61,9 +62,11 @@ const SelectAccount: React.FC<Props> = ({
           content ? content :
             loadState.users.length > 0 ? 
               <>
-                <h1>아직 구현 안된 로그인 된 계정 뭐시기 암튼 무언가!</h1>
+                <h1>계정 선택</h1>
+                {loadState.users.map((user: any) => <Btn styleType="secondary" grow>{user.name}</Btn>)}
+                <Btn grow to={`/signin${location.search}`} styleType="tertiary">새로운 계정 추가</Btn>
               </> : 
-              <Redirect to={`/login${location.search}`} />
+              <Redirect to={`/signin${location.search}`} />
         }
         buttonsBottom={[]}
       />
@@ -71,4 +74,4 @@ const SelectAccount: React.FC<Props> = ({
   );
 }
 
-export default SelectAccount;
+export default Users;

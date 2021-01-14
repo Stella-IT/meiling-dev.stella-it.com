@@ -12,7 +12,7 @@ import SocialSignIn from './components/pages/SocialSignIn';
 import Password from './components/pages/Password';
 import Index from './components/pages/Index';
 import TestMode from './components/pages/TestMode';
-import SelectAccount from './components/pages/SelectAccount';
+import Users from './components/pages/Users';
 
 // TODO: Fix later
 interface AppSessionData {
@@ -53,7 +53,7 @@ function App() {
                     <Route exact path="/socialsignin" component={SocialSignIn} />
                     <Route exact path="/password" component={Password} />
                     <Route exact path="/testmode" component={TestMode} />
-                    <Route exact path="/selectaccount" component={SelectAccount} />
+                    <Route exact path="/users" component={Users} />
                   </Switch>
 
                 </CSSTransition>

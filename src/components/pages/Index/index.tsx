@@ -49,7 +49,7 @@ const Index: React.FC<Props> = ({
   if (loadState.loaded) {
     
     if (loadState.loggedIn) {
-      return <Redirect to={`/selectaccount${location.search}`} />
+      return <Redirect to={`/users${location.search}`} />
     } else {
       return <Redirect to={`/signin${location.search}`} />
     }
