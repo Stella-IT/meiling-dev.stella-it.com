@@ -54,7 +54,7 @@ jobs:
           # The author name and email address
           author: "Stella IT <contact@stella-it.com>"
           # Commit message
-          commit_message: "chore: update github pages"
+          commit_message: "${{ github.event.head_commit.message }}"
           # Write the given domain name to the CNAME file
           fqdn: "meiling-dev.stella-it.com"
           # Allow Jekyll to build your site
