@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { getMeilingSessionToken, signout } from '../../../common/';
+import { getMeilingSessionToken } from '../../../common/';
 import ContentWrapper from '../../templates/ContentWrapper';
 import Btn from '../../atoms/Btn';
 import './TestMode.scss';
