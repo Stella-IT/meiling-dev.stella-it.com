@@ -34,7 +34,7 @@ const TestMode: React.FC<Props> = () => {
 
 serverVersion: ${token}`);
 
-                  const copyToClipboard = confirm("클립보드로 복사할까요?");
+                  const copyToClipboard = window.confirm("클립보드로 복사할까요?");
                   if (copyToClipboard) {
                     navigator.clipboard.writeText(token);
                     alert("클립보드로 복사되었습니다!");
