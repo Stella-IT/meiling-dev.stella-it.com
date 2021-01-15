@@ -27,13 +27,30 @@ const TestMode: React.FC<Props> = () => {
               <Btn to="signout" grow styleType="secondary">로그아웃</Btn>
               <Btn to="socialsignin" grow styleType="secondary">소셜 계정으로 로그인</Btn>
               <Btn onClick={async () => {
+                const localToken = localStorage.getItem('meiling-v1-token');
+                try {
+                  const token = await getMeilingSessionToken();
+                  alert(`localStorage: ${localToken}
+
+serverVersion: ${token}`);
+
+                  const copyToClipboard = confirm("클립보드로 복사할까요?");
+                  if (copyToClipboard) {
+                    navigator.clipboard.writeText(token);
+                    alert("클립보드로 복사되었습니다!");
+                  }
+                } catch (e) {
+                  alert("Meiling API 서버와 통신에 실패 했습니다!");
+                }
+              }} grow styleType="secondary">메이링 서버 세션토큰 발급 테스트</Btn>
+              <Btn onClick={async () => {
                 try {
                   const token = await getMeilingSessionToken();
                   alert(token);
                 } catch (e) {
                   alert("Meiling API 서버와 통신에 실패 했습니다!");
                 }
-              }} grow styleType="secondary">메이링 서버 세션토큰 발급 테스트</Btn>
+              }} grow styleType="secondary">메이링 서버 세션토큰 복사</Btn>
               <Btn href="https://github.com/Stella-IT/meiling-dev.stella-it.com" grow styleType="secondary">깃허브 레포지토리 접속</Btn>
             </div>
           </>
