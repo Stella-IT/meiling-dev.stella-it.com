@@ -63,6 +63,7 @@ const Users: React.FC<Props> = ({
             loadState.users.length > 0 ? 
               <>
                 <h1>계정 선택</h1>
+                <p>본 계정 선택 화면은 최종본이 아닙니다.</p>
                 {loadState.users.map((user: any) => <Btn styleType="secondary" grow>{user.name}</Btn>)}
                 <Btn grow to={`/signin${location.search}`} styleType="tertiary">새로운 계정 추가</Btn>
                 <Btn grow to={`/signout?redirect_uri=${window.location.href}`} styleType="tertiary">로그아웃</Btn>

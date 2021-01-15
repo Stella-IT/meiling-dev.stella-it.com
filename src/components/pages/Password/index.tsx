@@ -10,6 +10,7 @@ import './Password.scss';
 import { signInWithUsernameAndPassword, parseQueryUrl } from '../../../common';
 import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
 import { RouteComponentProps } from 'react-router-dom';
+import { MeilingV1ErrorType } from '../../../common/interface/error';
 
 interface Props extends RouteComponentProps {
   
@@ -23,6 +24,7 @@ interface State {
 
 const Password: React.FC<Props> = ({
   location,
+  history,
 }) => {
   type textFieldStatusTypes = "normal" | "positive" | "warning" | "negative";
   interface textFieldStatuses { 
@@ -61,6 +63,15 @@ const Password: React.FC<Props> = ({
             message: getMessageFromMeilingV1Error(result),
           }
         });
+
+        if (result) {
+          if (result.type === MeilingV1ErrorType.TWO_FACTOR_AUTHENTICATION_REQUIRED) {
+            history.push({
+              pathname: "/2fa",
+              search: location.search,
+            });
+          }
+        }
       } else {
         setTextFieldStatus({
           password: {
