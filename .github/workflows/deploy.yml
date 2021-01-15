@@ -50,7 +50,7 @@ jobs:
           # Build directory to deploy
           build_dir: "./build"
           # The committer name and email address
-          committer: "Stella IT <contact@stella-it.com>"
+          committer: "Stella IT Bot <bot@stella-it.com>"
           # The author name and email address
           author: "${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>"
           # Commit message
