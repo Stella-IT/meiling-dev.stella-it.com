@@ -7,13 +7,19 @@ import Btn from '../../atoms/Btn';
 import { MeilingV1SigninType } from '../../../common/interface/auth';
 import { getMessageFromAuthenticationMethod} from '../../../common/auth';
 
-interface Props extends RouteComponentProps {
+interface Props extends RouteComponentProps<{
+  method: string;
+}> {
   
 };
 
 const TwoFactor: React.FC<Props> = ({
-  location
+  location,
+  match,
 }) => {
+  const authMethod = match.params.method;
+  console.log(authMethod);
+
   const [loadState, setLoadState] = useState({
     loaded: false,
     error: false,

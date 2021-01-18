@@ -58,6 +58,7 @@ function App() {
                     <Route exact path="/testmode" component={TestMode} />
                     <Route exact path="/users" component={Users} />
                     <Route exact path="/2fa" component={TwoFactor} />
+                    <Route exact path="/2fa/:method" component={TwoFactor} />
                   </Switch>
 
                 </CSSTransition>
