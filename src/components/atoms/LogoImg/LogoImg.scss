@@ -1,6 +1,7 @@
-#logo_wrapper > svg {
-  display: block;
-  margin: 0 auto var(--space-r);
-  width: auto;
+#logo {
+  background: var(--image-company) no-repeat center;
+
+  margin-bottom: var(--space-r);
+  width: 100%;
   height: var(--space-xl);
 }
