@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MeilingV1SigninType } from './interface/auth';
+import { MeilingV1ExtendedAuthMethods, MeilingV1SigninType } from './interface/auth';
 
 const server = 'https://meiling.stella-api.dev';
 const tokenItemName = 'meiling-v1-token';
@@ -104,6 +104,32 @@ export async function getExtendedAuthenticationMethods(
   })).data;
 
   return data.methods;
+}
+
+export async function getExtendedAuthenticationChallenge(
+  type: MeilingV1SigninType,
+  method: MeilingV1ExtendedAuthMethods,
+  username?: string,
+) {
+  const token = await getMeilingSessionToken();
+
+  const data = (await axios.post(`${server}/v1/meiling/signin`,
+    {
+      type,
+      context: (username) ? {
+        username,
+      } : undefined,
+      data: {
+        method,
+      }
+    },
+    {
+      headers: (token === null || token === undefined) ? undefined : {
+        'Authorization': `Bearer ${token}`,
+    },
+  })).data;
+
+  return data.challenge;
 }
 
 export async function signout(uuid?: string) {
