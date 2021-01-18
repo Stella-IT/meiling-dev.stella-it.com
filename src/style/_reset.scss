@@ -22,9 +22,18 @@ html {
 }
 
 body {
+  color: var(--color-text);
   background-color: var(--color-background-body);
 
   transition-duration: var(--time-long);
+}
+
+div#logo {
+  display: block;
+  background: var(--image-company) no-repeat center;
+
+  width: 100%;
+  height: 60px;
 }
 
 input, button, textarea {
