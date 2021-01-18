@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../../img/logo.svg';
 import './LogoImg.scss';
 
 const LogoImg: React.FC = () => {
