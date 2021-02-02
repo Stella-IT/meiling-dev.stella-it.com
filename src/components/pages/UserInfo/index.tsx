@@ -1,9 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
-import { getLoggedInUser, getLoggedInUsers } from '../../../common';
+import { getLoggedInUser } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import Btn from '../../atoms/Btn';
 import ProfileInfo from '../../molecules/ProfileInfo';
 
 interface UserInfoState {
