@@ -29,10 +29,6 @@ const UserInfo: React.FC<Props> = ({
   const state = location.state as UserInfoState;
   const user_id = state?.user_id ? state?.user_id : match.params?.user_id;
 
-  if (!user_id) {
-    return <Redirect to={"/"}/>;
-  }
-
   useEffect(() => {
     if (!loadState.loaded) {
       (async () => {
@@ -53,6 +49,11 @@ const UserInfo: React.FC<Props> = ({
       })();
     }
   });
+
+
+  if (!user_id) {
+    return <Redirect to={"/"}/>;
+  }
 
   let content: JSX.Element | undefined;
 

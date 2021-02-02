@@ -72,6 +72,8 @@ export async function signInWithUsernameAndPassword(username: string, password: 
 }
 
 export async function getLoggedInUser(user_id: string) {
+  if (!user_id) throw new Error('Nope');
+
   const token = await getMeilingSessionToken();
 
   const data = (await axios.get(`${server}/v1/meiling/users/${user_id}`,
