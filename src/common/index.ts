@@ -71,7 +71,7 @@ export async function signInWithUsernameAndPassword(username: string, password: 
   return data;
 }
 
-export async function getLoggedInUser(user_id: string) {
+export async function getLoggedInUser(user_id?: string) {
   if (!user_id) throw new Error('Nope');
 
   const token = await getMeilingSessionToken();
