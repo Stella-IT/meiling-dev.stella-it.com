@@ -14,6 +14,7 @@ import Password from './components/pages/Password';
 import Index from './components/pages/Index';
 import TestMode from './components/pages/TestMode';
 import Users from './components/pages/Users';
+import UserInfo from './components/pages/UserInfo';
 import TwoFactor from './components/pages/TwoFactor';
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
                   <Route exact path="/password" component={Password} />
                   <Route exact path="/testmode" component={TestMode} />
                   <Route exact path="/users" component={Users} />
+                  <Route exact path="/users/:user_id" component={UserInfo} />
                   <Route exact path="/2fa" component={TwoFactor} />
                   <Route exact path="/2fa/:method" component={TwoFactor} />
                 </Switch>

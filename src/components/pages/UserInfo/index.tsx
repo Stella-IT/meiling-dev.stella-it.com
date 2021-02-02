@@ -1,38 +1,53 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
-import { getLoggedInUsers } from '../../../common';
+import { getLoggedInUser, getLoggedInUsers } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import Btn from '../../atoms/Btn';
+import ProfileInfo from '../../molecules/ProfileInfo';
 
-interface Props extends RouteComponentProps {
+interface UserInfoState {
+  user_id?: string;
+}
+
+interface Props extends RouteComponentProps<{
+  user_id?: string
+}> {
   
 };
 
-const Users: React.FC<Props> = ({
-  location
+const UserInfo: React.FC<Props> = ({
+  location,
+  match
 }) => {
   const [loadState, setLoadState] = useState({
     loaded: false,
     error: false,
-    users: [],
+    user: undefined,
   });
+
+  const state = location.state as UserInfoState;
+  const user_id = state?.user_id ? state?.user_id : match.params?.user_id;
+
+  if (!user_id) {
+    return <Redirect to={"/"}/>;
+  }
 
   useEffect(() => {
     if (!loadState.loaded) {
       (async () => {
         try {
-          const users = await getLoggedInUsers();
+          const user = await getLoggedInUser(user_id);
           setLoadState({
             loaded: true,
             error: false,
-            users,
+            user: user,
           });
         } catch(e) {
           setLoadState({
             loaded: true,
             error: true,
-            users: [],
+            user: undefined,
           });
         }
       })();
@@ -53,6 +68,8 @@ const Users: React.FC<Props> = ({
     </>
   }
 
+  const user = loadState.user as any;
+
   return (
     <Fragment>
       <ContentWrapper
@@ -60,15 +77,20 @@ const Users: React.FC<Props> = ({
         progressValue={1 / 10 * 100}
         content={
           content ? content :
-            loadState.users.length > 0 ? 
+            user ? 
               <>
-                <h1>계정 선택</h1>
-                <p>본 계정 선택 화면은 최종본이 아닙니다.</p>
-                {loadState.users.map((user: any) => <Btn to={`/users/${user.id}`} styleType="secondary" grow>{user.name}</Btn>)}
-                <Btn grow to={`/signin${location.search}`} styleType="tertiary">새로운 계정 추가</Btn>
-                <Btn grow to={`/signout?redirect_uri=${window.location.href}`} styleType="tertiary">로그아웃</Btn>
+                <ProfileInfo
+                  size="large"
+                  src={`${(user.profileUrl !== undefined) ? user.profileUrl : "https://placehold.it/128x128"}`}
+                  msg={`${(user.name !== undefined) ? ` ${user.name}`:''}`}
+                  username={user.username}
+                />
+                <p>계정 생성 일자: {user.createdAt}</p>
+                <p>계정 로그인 일자: {user.lastSignIn}</p>
+                <p>계정 인증 일자: {user.lastAuthenticated}</p>
+
               </> : 
-              <Redirect to={`/signin${location.search}`} />
+              <Redirect to={`/`} />
         }
         buttonsBottom={[]}
       />
@@ -76,4 +98,4 @@ const Users: React.FC<Props> = ({
   );
 }
 
-export default Users;
+export default UserInfo;

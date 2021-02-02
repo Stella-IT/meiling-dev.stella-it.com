@@ -71,6 +71,19 @@ export async function signInWithUsernameAndPassword(username: string, password: 
   return data;
 }
 
+export async function getLoggedInUser(user_id: string) {
+  const token = await getMeilingSessionToken();
+
+  const data = (await axios.get(`${server}/v1/meiling/users/${user_id}`,
+    {
+      headers: (token === null || token === undefined) ? undefined : {
+        'Authorization': `Bearer ${token}`,
+    },
+  })).data;
+
+  return data;
+}
+
 export async function getLoggedInUsers() {
   const token = await getMeilingSessionToken();
 
