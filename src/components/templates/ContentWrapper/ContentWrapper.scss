@@ -38,13 +38,21 @@ html, body {
       width: 100%;
       padding: var(--space-l);
 
+      & > *:first-child {
+        margin-top: 0;
+      }
+
+      & > *:last-child {
+        margin-bottom: 0;
+      }
+
       @include media-mobile-only {
         padding: var(--space-r);
       }
     }
 
     &.progress > #content {
-      padding-top: var(--space-r);
+      padding-top: calc(var(--space-r) + 1px);
 
       @include media-mobile-only {
         padding: var(--space-s);
