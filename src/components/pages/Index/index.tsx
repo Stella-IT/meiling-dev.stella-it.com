@@ -1,15 +1,17 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
-import { getLoggedInUsers } from '../../../common/';
+import { getLoggedInUsers, deepCopyString } from '../../../common/';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
+import { MeilingV1ErrorType } from '../../../common/interface/error';
 
 interface Props extends RouteComponentProps {
   
 };
 
 const Index: React.FC<Props> = ({
-  location
+  location,
+  history,
 }) => {
   const [loadState, setLoadState] = useState({
     loaded: false,
@@ -40,6 +42,15 @@ const Index: React.FC<Props> = ({
               loggedIn: false,
               commsFailed: true,
             });
+            history.push(
+              "/error",
+              {
+                error: {
+                  type: MeilingV1ErrorType.MEILING_OFFLINE,
+                },
+                redirect_uri: deepCopyString(window.location.href),
+              }
+            )
           }
         }
       })();
@@ -62,12 +73,6 @@ const Index: React.FC<Props> = ({
           pageName="index"
           progressValue={1 / 10 * 100}
           content={
-            (loadState.commsFailed) ?
-            <>
-              <h1>인증 서버와의 통신 중 장애가 발생했습니다.</h1>
-              <p>Meiling API 가 온라인인지 확인하세요.</p>
-            </>
-            :
             <>
               <h1>인증 서버와 통신 중 입니다.</h1>
               <p>잠시만 기다려 주세요.</p>

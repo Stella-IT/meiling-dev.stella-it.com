@@ -1,0 +1,9 @@
+div.add_account_btn {
+  padding-top: var(--space-r);
+  text-align: center;
+
+  & > a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 
 import ContentWrapper from '../../templates/ContentWrapper';
-import ProfileInfo from '../../molecules/ProfileInfo';
+import ProfileInfoTemplate from '../../molecules/ProfileInfoTemplate';
 import TextFieldWrapper from '../../molecules/TextFieldWrapper';
 import TextLink from '../../atoms/TextLink';
 import Btn from '../../atoms/Btn';
@@ -86,12 +86,11 @@ const Password: React.FC<Props> = ({
     
     if (query.success) {
       const data = parseQueryUrl(location?.search);
-      const redirectUri = data.find(n => n.name === "redirect_uri");
+      const redirectUri = data['redirect_uri'];
 
       let redirectTo = "/";
-
-      if (redirectUri && redirectUri.value) {
-        redirectTo = redirectUri.value;
+      if (redirectUri) {
+        redirectTo = redirectUri;
       }
 
       window.location.href = redirectTo;
@@ -111,7 +110,7 @@ const Password: React.FC<Props> = ({
       progressValue={2 / 3 * 100}
       content={
         <>
-          <ProfileInfo
+          <ProfileInfoTemplate
             size="large"
             src={`${(profileUrl !== undefined) ? profileUrl : "https://placehold.it/128x128"}`}
             msg={`환영합니다.${(name !== undefined) ? ` ${name} 님.`:''}`}

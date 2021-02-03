@@ -1,0 +1,19 @@
+#content.error {
+  text-align: center;
+
+  & > svg {
+    display: block;
+    margin: 0 auto;
+    width: 8rem;
+    fill: var(--color-disabled-text);
+    opacity: .25;
+  }
+
+  & > h1 {
+    margin-bottom: 0;
+  }
+
+  & > p {
+    margin-top: var(--space-xxs);
+  }
+}

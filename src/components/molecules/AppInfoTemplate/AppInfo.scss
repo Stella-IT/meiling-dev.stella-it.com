@@ -1,0 +1,20 @@
+div.app_info {
+  text-align: center;
+
+  & > p.app_name {
+    margin: var(--space-xxs) 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  & > div.textlink_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > a.textlink:not(:last-child){
+      margin-bottom: var(--space-xxxs);
+    }
+  }
+}

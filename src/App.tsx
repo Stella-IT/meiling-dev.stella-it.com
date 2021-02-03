@@ -13,9 +13,11 @@ import SocialSignIn from './components/pages/SocialSignIn';
 import Password from './components/pages/Password';
 import Index from './components/pages/Index';
 import TestMode from './components/pages/TestMode';
-import Users from './components/pages/Users';
+import SelectAccount from './components/pages/SelectAccount';
 import UserInfo from './components/pages/UserInfo';
 import TwoFactor from './components/pages/TwoFactor';
+import AppAuth from './components/pages/AppAuth';
+import Error from './components/pages/Error';
 
 function App() {
   
@@ -56,10 +58,12 @@ function App() {
                   <Route exact path="/socialsignin" component={SocialSignIn} />
                   <Route exact path="/password" component={Password} />
                   <Route exact path="/testmode" component={TestMode} />
-                  <Route exact path="/users" component={Users} />
+                  <Route exact path="/users" component={SelectAccount} />
                   <Route exact path="/users/:user_id" component={UserInfo} />
                   <Route exact path="/2fa" component={TwoFactor} />
                   <Route exact path="/2fa/:method" component={TwoFactor} />
+                  <Route exact path="/auth" component={AppAuth} />
+                  <Route exact path="/error" component={Error} />
                 </Switch>
 
               </CSSTransition>

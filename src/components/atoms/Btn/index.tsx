@@ -25,22 +25,20 @@ const Btn: React.FC<Props> = ({
   disabled = false,
   ...props
 }) => {
-  const classes: string[] = [ styleType ];
+  const classes: string[] = [ 'btn', styleType ];
   if (grow) classes.push("grow");
   if (isSquare) classes.push("square");
 
   if ((to && disabled) || (href && disabled)) {
-    classes.push("button disabled");
+    classes.push("disabled");
     return (<button className={classes.join(" ")} disabled {...props}>
       {children}
     </button>)
   } else if (to) {
-    classes.push("button");
     return (<Link to={to} className={classes.join(" ")} {...props}>
       {children}
     </Link>);
   } else if (href) {
-    classes.push("button");
     return (<a href={href} className={classes.join(" ")} {...props}>
       {children}
     </a>);

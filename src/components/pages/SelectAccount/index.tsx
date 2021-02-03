@@ -3,15 +3,24 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getLoggedInUsers } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
+import SelectAccountList from '../../molecules/SelectAccountList';
 import Btn from '../../atoms/Btn';
 
 interface Props extends RouteComponentProps {
   
 };
 
+interface State {
+  redirect_uri?: string;
+}
+
 const Users: React.FC<Props> = ({
-  location
+  location,
+  history,
 }) => {
+  const state = location.state as State;
+  const redirect_uri = state?.redirect_uri ? state.redirect_uri : undefined;
+
   const [loadState, setLoadState] = useState({
     loaded: false,
     error: false,
@@ -64,9 +73,18 @@ const Users: React.FC<Props> = ({
               <>
                 <h1>계정 선택</h1>
                 <p>본 계정 선택 화면은 최종본이 아닙니다.</p>
-                {loadState.users.map((user: any) => <Btn to={`/users/${user.id}`} styleType="secondary" grow>{user.name}</Btn>)}
-                <Btn grow to={`/signin${location.search}`} styleType="tertiary">새로운 계정 추가</Btn>
-                <Btn grow to={`/signout?redirect_uri=${window.location.href}`} styleType="tertiary">로그아웃</Btn>
+                <SelectAccountList addAccountBtnTo={`/signin${location.search}`} list={loadState.users.map((user: any) => {
+                  return {src: user.profileUrl, username: user.name, email: user.emails[0]?.email, id: user.id,
+                    onClick: (redirect_uri) ? () => {
+                      history.push(
+                        redirect_uri,
+                        {
+                          user_uuid: user.id,
+                        }
+                      )
+                    } : undefined,
+                    to: (!redirect_uri) ? `/users/${user.id}` : undefined}
+                })}/>
               </> : 
               <Redirect to={`/signin${location.search}`} />
         }

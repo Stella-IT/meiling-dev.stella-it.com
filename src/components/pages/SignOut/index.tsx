@@ -24,14 +24,15 @@ const SignOut: React.FC<Props> = ({
           let redirectTo = "/"
           if (location.search) {
             const parsedData = parseQueryUrl(location.search);
-            const uuidData = parsedData.find(n => n.name === "uuid");
-            const redirectData = parsedData.find(n => n.name === "uuid");
+            const uuidData = parsedData.uuid;
+            const redirectData = parsedData['redirect_uri'];
 
             if (uuidData) {
-              uuid = uuidData.value;
+              uuid = uuidData;
             }
-            if (redirectData && redirectData.value) {
-              redirectTo = redirectData.value;
+
+            if (redirectData) {
+              redirectTo = redirectData;
             }
           }
 

@@ -32,6 +32,40 @@ export async function getMeilingSessionToken(forceUpdate?: boolean): Promise<str
   return await getMeilingSessionToken(true);
 }
 
+export async function getApplication(appId: string) {
+  const token = await getMeilingSessionToken();
+
+  const url = `${server}/v1/meiling/apps/${appId}`;
+  const response = await axios.get(url, {
+    headers: (token === null || token === undefined) ? undefined : {
+      'Authorization': `Bearer ${token}`,
+    }
+  });
+
+  const data = response.data;
+  return data;
+}
+
+export async function getAuthentication(userUuid: string, searchStr: string, userAuth: boolean = false) {
+  const token = await getMeilingSessionToken();
+
+  const url = `${server}/v1/meiling/users/${userUuid}/auth${searchStr}`;
+  const response = (userAuth) ? 
+    await axios.post(url, undefined, {
+      headers: (token === null || token === undefined) ? undefined : {
+        'Authorization': `Bearer ${token}`,
+      }
+    }) :
+    await axios.get(url, {
+      headers: (token === null || token === undefined) ? undefined : {
+        'Authorization': `Bearer ${token}`,
+      }
+    });
+
+  const data = response.data;
+  return data;
+}
+
 export async function isUsernameAvailable(username: string) {
   const token = await getMeilingSessionToken();
 
@@ -160,13 +194,31 @@ export async function signout(uuid?: string) {
   return data;
 }
 
-export function parseQueryUrl(url?: string) {
-  if (url === undefined) {
-    return [];
+type QueryConverted = {
+  [name: string]: string
+};
+
+export function generateQueryUrl(data: QueryConverted) {
+  let str = "";
+  for (const name in data) {
+    str += "&"+encodeURIComponent(name)+"="+encodeURIComponent(data[name]);
   }
 
-  const searchQueries = url.split('?',2)[1];
-  const result: {name: string, value?: string}[] = [];
+  str = str.replace(/^&/, '?');
+  return str;
+}
+
+export function parseQueryUrl(url?: string): QueryConverted {
+  if (url === undefined) {
+    return {};
+  }
+
+  const realUrl = decodeURIComponent(url);
+  const searchQueries = realUrl.split('?').splice(1).join('?');
+
+  const result: {
+    [name: string]: string
+  } = {};
 
   if (typeof searchQueries !== "undefined") {
     const splitedQueries = searchQueries.split('&');
@@ -176,11 +228,13 @@ export function parseQueryUrl(url?: string) {
       const name = parsed[0];
       const value = parsed[1];
 
-      result.push({
-        name, value
-      });
+      result[name] = value;
     }
   }
 
   return result;
+}
+
+export function deepCopyString(string: string) {
+  return (' ' + string).slice(1)
 }

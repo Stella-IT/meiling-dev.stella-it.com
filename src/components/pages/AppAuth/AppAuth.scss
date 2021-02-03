@@ -1,0 +1,8 @@
+#content.app_auth > div.paragraph_wrapper {
+  margin: var(--space-r) auto;
+
+  & > p {
+    margin: 0;
+    text-align: center;
+  }
+}

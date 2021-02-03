@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import ProfileInfo from '../../molecules/ProfileInfo';
+import ProfileInfoTemplate from '../../molecules/ProfileInfoTemplate';
 
 interface UserInfoState {
   user_id?: string;
@@ -79,7 +79,7 @@ const UserInfo: React.FC<Props> = ({
           content ? content :
             user ? 
               <>
-                <ProfileInfo
+                <ProfileInfoTemplate
                   size="large"
                   src={`${(user.profileUrl !== undefined) ? user.profileUrl : "https://placehold.it/128x128"}`}
                   msg={`${(user.name !== undefined) ? ` ${user.name}`:''}`}
