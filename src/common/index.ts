@@ -4,9 +4,13 @@ import { MeilingV1ExtendedAuthMethods, MeilingV1SigninType } from './interface/a
 const server = 'https://meiling.stella-api.dev';
 const tokenItemName = 'meiling-v1-token';
 
-export async function getMeilingSessionToken(): Promise<string> {
-  let token = localStorage.getItem(tokenItemName);
+export async function getMeilingSessionToken(forceUpdate?: boolean): Promise<string> {
+  let token = undefined;
   
+  if (!forceUpdate) {
+    token = localStorage.getItem(tokenItemName);
+  }
+
   const data = (await axios.get(`${server}/v1/meiling/session`, {
     headers: (token === null || token === undefined) ? undefined : {
       'Authorization': `Bearer ${token}`,
@@ -21,15 +25,11 @@ export async function getMeilingSessionToken(): Promise<string> {
     if (token) {
       localStorage.setItem(tokenItemName, token);
       return token;
-    } else {
-      localStorage.removeItem(tokenItemName);
-      return await getMeilingSessionToken();
     }
-
-  } else {
-    localStorage.removeItem(tokenItemName);
-    return await getMeilingSessionToken();
   }
+
+  localStorage.removeItem(tokenItemName);
+  return await getMeilingSessionToken(true);
 }
 
 export async function isUsernameAvailable(username: string) {
