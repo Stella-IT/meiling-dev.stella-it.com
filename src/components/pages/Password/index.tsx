@@ -131,8 +131,10 @@ const Password: React.FC<Props> = ({
             caption={textFieldStatus.password.message}
             autoComplete="password"
           />
-          <TextLink to="find-password">비밀번호를 잊으셨나요?</TextLink>
-          <TextLink to="find-password">비밀번호 없이 로그인합니다.</TextLink>
+          <div className="textlink_wrapper">
+            <TextLink to="find-password">비밀번호를 잊으셨나요?</TextLink>
+            <TextLink to="find-password">비밀번호 없이 로그인합니다.</TextLink>
+          </div>
         </>
       }
       buttonsBottom={[
