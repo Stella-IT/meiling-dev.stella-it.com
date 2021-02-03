@@ -10,7 +10,7 @@ import './AppAuth.scss';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { generateQueryUrl, getAuthentication, getLoggedInUsers, parseQueryUrl, deepCopyString } from '../../../common';
 import { MeilingV1UserOAuthAuthQuery } from '../../../common/interface/oauth';
-import { getMessageFromMeilingV1Error, parseMeilingV1ErrorResponse } from '../../../common/error';
+import { parseMeilingV1ErrorResponse } from '../../../common/error';
 import { MeilingV1ErrorType } from '../../../common/interface/error';
 
 interface Props extends RouteComponentProps<{
@@ -34,20 +34,14 @@ const AppAuth: React.FC<Props> = ({
   const scopes = searchObj?.scope;
   const redirectUri = searchObj?.redirect_uri;
 
-  const queryRequirements = searchObj;
-
   const [userUuid, setUserUuid] = useState<string|undefined>((location.state as State)?.user_uuid);
   console.log(userUuid);
   const [loadState, setLoadState] = useState<{
     loaded: boolean;
     error?: string | boolean;
-    methods?: [];
-    challenge?: string;
   }>({
     loaded: false,
     error: undefined,
-    methods: [],
-    challenge: undefined,
   });
 
   useEffect(() => {
@@ -81,6 +75,10 @@ const AppAuth: React.FC<Props> = ({
             }
           }
         }
+        setLoadState({
+          loaded: true,
+          error: undefined,
+        })
       }
     })();
   });

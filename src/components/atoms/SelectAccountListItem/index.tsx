@@ -21,7 +21,7 @@ const SelectAccountListItem: React.FC<SelectAccountListItemProps> = ({
     return (
       <li className="select_account_item">
         <Link to={to}>
-          <img src={src} />
+          <img alt={`${username} 프로필 사진`} src={src} />
           <span>
             <span>{username}</span>
             <span>{email}</span>
@@ -33,7 +33,7 @@ const SelectAccountListItem: React.FC<SelectAccountListItemProps> = ({
   return (
     <li className="select_account_item">
       <button onClick={onClick}>
-        <img src={src} />
+        <img alt={`${username} 프로필 사진`} src={src} />
         <span>
           <span>{username}</span>
           <span>{email}</span>
