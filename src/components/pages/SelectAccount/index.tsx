@@ -4,7 +4,6 @@ import { getLoggedInUsers } from '../../../common';
 import ContentWrapper from '../../templates/ContentWrapper';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import SelectAccountList from '../../molecules/SelectAccountList';
-import Btn from '../../atoms/Btn';
 
 interface Props extends RouteComponentProps {
   
